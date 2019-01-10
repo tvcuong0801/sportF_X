@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/imageViewItemSanBong"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_launcher_background" />
+
+    <TextView
+        android:id="@+id/textViewTen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Tên"
+        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+        android:textColor="#2A7CE8"
+        android:textSize="25sp"
+        app:layout_constraintStart_toEndOf="@+id/imageViewItemSanBong"
+        app:layout_constraintTop_toTopOf="@+id/imageViewItemSanBong" />
+
+    <TextView
+        android:id="@+id/textViewDiaChi"
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        
+        android:maxLines="3"
+        android:singleLine="false"
+        android:text="Địa chỉ"
+        app:layout_constraintStart_toStartOf="@+id/textViewTen"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTen" />
+
+    <TextView
+        android:id="@+id/textViewLoai"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Loại"
+        app:layout_constraintStart_toStartOf="@+id/textViewDiaChi"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDiaChi" />
+
+    <TextView
+        android:id="@+id/textViewDanhGia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Đánh giá"
+        app:layout_constraintStart_toStartOf="@+id/textViewLoai"
+        app:layout_constraintTop_toBottomOf="@+id/textViewLoai" />
+</android.support.constraint.ConstraintLayout>
