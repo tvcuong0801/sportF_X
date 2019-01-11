@@ -20,6 +20,24 @@ public class SharedPreferencesManager {
         }
     }
 
+    public static  void setLogin(boolean isLogin){
+        SharedPreferences.Editor editor = sPreferences.edit();
+        editor.putBoolean("login", isLogin);
+        editor.apply();
+    }
+
+    public static boolean isLogin(){
+       return sPreferences.getBoolean("login", false);
+    }
+
+    public static void userNAme(String Name){
+        SharedPreferences.Editor editor= sPreferences.edit();
+        editor.putString("userName",Name);
+        editor.apply();
+    }
+
+
+
     public static void setFirstTimeSetup(boolean isFirstTime) {
         SharedPreferences.Editor editor = sPreferences.edit();
         editor.putBoolean(PREF_FIRST_TIME_SETUP, isFirstTime);

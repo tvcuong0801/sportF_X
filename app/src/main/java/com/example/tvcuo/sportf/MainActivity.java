@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 ImageButton btnKhamPha, btnDatTruoc, btnTintuc;
+ImageButton imageButtonDangNhap;
 ListView listView;
 public static DataBaseSanBong dataBaseSanBong;
 public static DataBaseHinhAnh dataBaseHinhAnh;
@@ -25,8 +26,7 @@ public static ArrayList<SanBong> sanBongArrayList;
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
-        Intent intents= new Intent(MainActivity.this, Dang_nhap.class);
-        startActivity(intents);
+
         dataBaseSanBong= new DataBaseSanBong(this,"sanbong.sqlite",null,1);
         dataBaseSanBong.queryData("CREATE TABLE IF NOT EXISTS SanBong(Id INTEGER PRIMARY KEY AUTOINCREMENT, Ten NVARCHAR(250), DiaChi NVARCHAR(250), Loai LONG, DanhGia DOUBLE, HinhAnh NVARCHAR(300))");
         dataBaseSanBong.queryData("CREATE TABLE IF NOT EXISTS BinhLuan(Idbl INTEGER PRIMARY KEY AUTOINCREMENT, IdSB LONG , Cmt NVARCHAR(300), HinhAnh NVARCHAR(500), Ten NVARCHAR (50), DanhGia LONG)");
@@ -61,6 +61,7 @@ public static ArrayList<SanBong> sanBongArrayList;
         btnDatTruoc=findViewById(R.id.btndattruoc);
         btnTintuc=findViewById(R.id.btntintuc);
         listView=findViewById(R.id.listSanbong);
+        imageButtonDangNhap=findViewById(R.id.imageButtonDangNhap);
         sanBongArrayList= new ArrayList<>();
         Adapter_ListSanBong adapter_listSanBong = new Adapter_ListSanBong(this, R.layout.iterm_list_sanbong, sanBongArrayList);
         listView.setAdapter(adapter_listSanBong);
@@ -726,6 +727,13 @@ public static ArrayList<SanBong> sanBongArrayList;
                 Intent intent= new Intent(MainActivity.this,XemSan_Activity.class);
                 intent.putExtra("id",idSB);
                 startActivity(intent);
+            }
+        });
+
+        imageButtonDangNhap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,Dang_nhap.class));
             }
         });
 
