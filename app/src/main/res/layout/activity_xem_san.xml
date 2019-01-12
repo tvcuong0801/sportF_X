@@ -177,14 +177,14 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/layout_border"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintBottom_toTopOf="@+id/buttonDatSan"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
 
     <Button
         android:background="#e8f5fc"
-        android:id="@+id/button2"
+        android:id="@+id/buttonDatSan"
         style="@android:style/Widget.Material.Light.Button.Small"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

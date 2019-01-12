@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class XemSan_Activity extends AppCompatActivity {
 DataBaseSanBong dataBaseSanBong;
 ImageView imageViewHinhAnh;
-Button btnLienHe;
+Button btnLienHe, btnDatSan;
 int idSB;
 ImageView imageViewChiDuong;
 TextView textViewTen_xs, textViewDiaChi_xs, textViewLoai_xs;
@@ -43,7 +43,7 @@ ArrayList<BinhLuan> binhLuanArrayList;
         btnLienHe=findViewById(R.id.buttonGoi_dt);
         listViewCmt=findViewById(R.id.list_Binh_Luan);
         binhLuanArrayList= new ArrayList<BinhLuan>();
-
+        btnDatSan= findViewById(R.id.buttonDatSan);
 
         Cursor cursorCmt= dataBaseSanBong.getDataSql("SELECT * FROM BinhLuan WHERE IdSB = "+ idSB);
         Adapter_BinhLuan adapter_binhLuan= new Adapter_BinhLuan(this, R.layout.item_binhluan, binhLuanArrayList);
@@ -131,6 +131,13 @@ ArrayList<BinhLuan> binhLuanArrayList;
                 SharedPreferencesManager.init(XemSan_Activity.this);
                 SharedPreferencesManager.setIdSB_Hinh_Anh(idSB);
                 startActivity(intent1);
+            }
+        });
+
+        btnDatSan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(XemSan_Activity.this,Dat_San.class));
             }
         });
 
