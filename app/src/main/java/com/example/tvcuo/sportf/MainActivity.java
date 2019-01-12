@@ -36,8 +36,10 @@ public static ArrayList<SanBong> sanBongArrayList;
 
         checkFirstTime();
 
-
-
+        if(SharedPreferencesManager.isLogin())
+        {
+            Toast.makeText(this,SharedPreferencesManager.getIDFB(),Toast.LENGTH_SHORT).show();
+        }
 
         initView();
         control();

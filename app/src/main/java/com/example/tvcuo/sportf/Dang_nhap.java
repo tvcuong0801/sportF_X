@@ -14,23 +14,21 @@ import com.facebook.login.widget.LoginButton;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Base64;
+
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
+
 import android.widget.TextView;
 
 import com.facebook.CallbackManager;
-import com.facebook.FacebookSdk;
+
 import com.facebook.login.widget.ProfilePictureView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Array;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+
 import java.util.Arrays;
 
 public class Dang_nhap extends AppCompatActivity {
@@ -69,7 +67,9 @@ String email, name, firstname;
                 buttonLogout.setVisibility(View.INVISIBLE);
                 textNameProfile.setText("");
                 imageProfile.setProfileId(null);
+                SharedPreferencesManager.setIDFB("");
                 buttonLogin.setVisibility(View.VISIBLE);
+                SharedPreferencesManager.setLogin(false);
             }
         });
     }
@@ -99,7 +99,9 @@ String email, name, firstname;
             public void onError(FacebookException error) {
 
             }
+
         });
+
     }
 
     private void result() {
@@ -112,6 +114,7 @@ String email, name, firstname;
                     name=object.getString("name");
                     firstname=object.getString("first_name");
                     imageProfile.setProfileId(Profile.getCurrentProfile().getId());
+                    SharedPreferencesManager.setIDFB(Profile.getCurrentProfile().getId());
                     textNameProfile.setText(name);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -130,9 +133,17 @@ String email, name, firstname;
         callbackManager.onActivityResult(requestCode,resultCode,data);
     }
 
+
+
     @Override
     protected void onStart() {
-        LoginManager.getInstance().logOut();
+        if(SharedPreferencesManager.isLogin())
+        {
+            imageProfile.setProfileId(Profile.getCurrentProfile().getId());
+            buttonLogin.setVisibility(View.INVISIBLE);
+            textNameProfile.setText(Profile.getCurrentProfile().getName());
+            buttonLogout.setVisibility(View.VISIBLE);
+        }
         super.onStart();
     }
 }

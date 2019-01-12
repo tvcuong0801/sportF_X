@@ -46,7 +46,8 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".Dang_nhap"></activity>
+        <activity android:name=".Dang_nhap" />
+        <activity android:name=".Dat_San"></activity>
     </application>
 
 </manifest>

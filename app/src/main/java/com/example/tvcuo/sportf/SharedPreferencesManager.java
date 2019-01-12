@@ -30,12 +30,15 @@ public class SharedPreferencesManager {
        return sPreferences.getBoolean("login", false);
     }
 
-    public static void userNAme(String Name){
+    public static void setIDFB(String email){
         SharedPreferences.Editor editor= sPreferences.edit();
-        editor.putString("userName",Name);
+        editor.putString("IDFB",email);
         editor.apply();
     }
 
+    public static String getIDFB(){
+        return sPreferences.getString("IDFB","");
+    }
 
 
     public static void setFirstTimeSetup(boolean isFirstTime) {
