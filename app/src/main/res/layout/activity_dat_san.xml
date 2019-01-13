@@ -7,11 +7,22 @@
     tools:context=".Dat_San">
 
 
+    <CheckBox
+        android:id="@+id/checkBoxSogio"
+        android:layout_width="34dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:checked="true"
+        android:clickable="false"
+        app:layout_constraintEnd_toEndOf="@+id/checkBoxChonGio"
+        app:layout_constraintStart_toStartOf="@+id/checkBoxChonGio"
+        app:layout_constraintTop_toTopOf="@+id/editTextSoGio" />
+
     <EditText
         android:id="@+id/editTextGio"
         android:layout_width="272dp"
         android:layout_height="49dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="4dp"
         android:ems="10"
         android:inputType="textPersonName"
@@ -29,24 +40,37 @@
         app:layout_constraintBottom_toBottomOf="@+id/editTextGio"
         app:layout_constraintEnd_toStartOf="@+id/editTextGio" />
 
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="9dp"
+        android:layout_marginBottom="8dp"
+        android:text="Số giờ"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextSoGio"
+        app:layout_constraintEnd_toStartOf="@+id/editTextSoGio" />
+
     <ImageView
-        android:id="@+id/imageView_xs_HinhAnh"
+        android:id="@+id/imageView_DatSan_HinhAnh"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="150dp"
         android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_launcher_background" />
 
     <Spinner
+
         android:id="@+id/spinner1"
         android:layout_width="331dp"
         android:layout_height="44dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView_xs_HinhAnh" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView_DatSan_HinhAnh" />
 
     <CheckBox
         android:id="@+id/checkBoxChonSan"
@@ -54,10 +78,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="22dp"
         android:checked="true"
         android:clickable="false"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/spinner1"
         app:layout_constraintTop_toTopOf="@+id/spinner1" />
 
@@ -65,33 +87,29 @@
         android:id="@+id/checkBoxChonNgay"
         android:layout_width="34dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="22dp"
         android:checked="true"
         android:clickable="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/spinner1"
+        app:layout_constraintEnd_toEndOf="@+id/checkBoxChonSan"
+        app:layout_constraintStart_toStartOf="@+id/checkBoxChonSan"
         app:layout_constraintTop_toTopOf="@+id/editTextNgay" />
 
     <CheckBox
         android:id="@+id/checkBoxChonGio"
         android:layout_width="34dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="22dp"
         android:checked="true"
         android:clickable="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/spinner1"
+        app:layout_constraintEnd_toEndOf="@+id/checkBoxChonNgay"
+        app:layout_constraintStart_toStartOf="@+id/checkBoxChonNgay"
         app:layout_constraintTop_toTopOf="@+id/editTextGio" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="9dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="Ngày"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -102,21 +120,23 @@
         android:id="@+id/editTextNgay"
         android:layout_width="272dp"
         android:layout_height="49dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="@+id/spinner1"
         app:layout_constraintTop_toBottomOf="@+id/spinner1" />
 
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout3"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/layout_border"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextGio"
-        android:background="@drawable/layout_border">
+        app:layout_constraintTop_toBottomOf="@+id/editTextSoGio">
 
         <TextView
             android:id="@+id/textView_Ten_DatSan"
@@ -135,45 +155,45 @@
             android:id="@+id/textViewNgay_datsan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="46dp"
             android:layout_marginTop="8dp"
             android:text="Ngày"
             android:textAppearance="@style/TextAppearance.AppCompat"
-            app:layout_constraintTop_toBottomOf="@+id/textView_Ten_DatSan"
-            tools:layout_editor_absoluteX="46dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_Ten_DatSan" />
 
         <TextView
             android:id="@+id/textViewGio_datsan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="50dp"
             android:text="Giờ"
             android:textAppearance="@style/TextAppearance.AppCompat"
-            app:layout_constraintStart_toStartOf="@+id/textViewNgay_datsan"
-            app:layout_constraintTop_toBottomOf="@+id/textViewNgay_datsan" />
+            app:layout_constraintStart_toEndOf="@+id/textViewNgay_datsan"
+            app:layout_constraintTop_toTopOf="@+id/textViewNgay_datsan" />
 
         <TextView
-            android:id="@+id/textView11"
+            android:id="@+id/textViewTongTien_DatSan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Tổng tiền"
             android:textAppearance="@style/TextAppearance.AppCompat"
-            app:layout_constraintStart_toStartOf="@+id/textViewGio_datsan"
-            app:layout_constraintTop_toBottomOf="@+id/textViewGio_datsan" />
+            app:layout_constraintStart_toStartOf="@+id/textView_Loaisan_datsan"
+            app:layout_constraintTop_toBottomOf="@+id/textView_Loaisan_datsan" />
 
         <EditText
             android:id="@+id/editTextGhiChu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:ems="10"
             android:inputType="textPersonName"
             android:text="Ghi chú"
-            app:layout_constraintStart_toStartOf="@+id/textView11"
-            app:layout_constraintTop_toBottomOf="@+id/textView11" />
+            app:layout_constraintStart_toStartOf="@+id/textViewTongTien_DatSan"
+            app:layout_constraintTop_toBottomOf="@+id/textViewTongTien_DatSan" />
 
         <RadioButton
-            android:id="@+id/radioButton2"
+            android:id="@+id/radioButtonTrucTuyen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -184,30 +204,60 @@
             app:layout_constraintTop_toBottomOf="@+id/editTextGhiChu" />
 
         <RadioButton
-            android:id="@+id/radioButton3"
+            android:id="@+id/radioButtonTaiCho"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:clickable="true"
             android:text="Thanh toán tại sân"
-            app:layout_constraintStart_toStartOf="@+id/radioButton2"
-            app:layout_constraintTop_toBottomOf="@+id/radioButton2" />
+            app:layout_constraintStart_toStartOf="@+id/radioButtonTrucTuyen"
+            app:layout_constraintTop_toBottomOf="@+id/radioButtonTrucTuyen" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/buttonXacNhan"
             android:layout_width="200dp"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:layout_marginStart="161dp"
-            android:layout_marginTop="21dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="162dp"
             android:background="#e8f5fc"
             android:text="Xác nhận"
             android:textColor="#0094fd"
-            android:textSize="20sp"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioButton3" />
+            app:layout_constraintTop_toBottomOf="@+id/radioButtonTaiCho" />
+
+        <TextView
+            android:id="@+id/textView_Loaisan_datsan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Loại sân"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            app:layout_constraintStart_toStartOf="@+id/textViewNgay_datsan"
+            app:layout_constraintTop_toBottomOf="@+id/textViewNgay_datsan" />
+
+        <TextView
+            android:id="@+id/textViewSoGio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="37dp"
+            android:text="Số giờ"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            app:layout_constraintStart_toEndOf="@+id/textViewGio_datsan"
+            app:layout_constraintTop_toTopOf="@+id/textViewGio_datsan" />
 
     </android.support.constraint.ConstraintLayout>
+
+    <EditText
+        android:id="@+id/editTextSoGio"
+        android:layout_width="272dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="@+id/editTextGio"
+        app:layout_constraintTop_toBottomOf="@+id/editTextGio" />
 
 </android.support.constraint.ConstraintLayout>

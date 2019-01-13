@@ -38,7 +38,7 @@ ArrayList<BinhLuan> binhLuanArrayList;
         textViewDiaChi_xs=findViewById(R.id.textView_xs_DiaChi);
         textViewTen_xs=findViewById(R.id.textView_xs_Ten);
         textViewLoai_xs=findViewById(R.id.textView_xs_Loai);
-        imageViewHinhAnh=findViewById(R.id.imageView_xs_HinhAnh);
+        imageViewHinhAnh=findViewById(R.id.imageView_DatSan_HinhAnh);
         imageViewChiDuong=findViewById(R.id.imageViewChiDuong);
         btnLienHe=findViewById(R.id.buttonGoi_dt);
         listViewCmt=findViewById(R.id.list_Binh_Luan);
@@ -137,7 +137,9 @@ ArrayList<BinhLuan> binhLuanArrayList;
         btnDatSan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SharedPreferencesManager.setIdSB_Hinh_Anh(idSB);
                 startActivity(new Intent(XemSan_Activity.this,Dat_San.class));
+
             }
         });
 

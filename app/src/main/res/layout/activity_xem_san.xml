@@ -7,7 +7,7 @@
     tools:context=".XemSan_Activity">
 
     <ImageView
-        android:id="@+id/imageView_xs_HinhAnh"
+        android:id="@+id/imageView_DatSan_HinhAnh"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:scaleType="fitXY"
@@ -25,7 +25,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView_xs_HinhAnh"
+        app:layout_constraintTop_toBottomOf="@+id/imageView_DatSan_HinhAnh"
         tools:ignore="ExtraText">
 
         <TextView
@@ -65,7 +65,6 @@
             android:layout_marginEnd="24dp"
             android:layout_marginBottom="28dp"
             android:background="#e8f5fc"
-            android:drawableLeft="@android:drawable/stat_sys_phone_call_forward"
             android:text="Liên hệ"
             android:textAppearance="@style/TextAppearance.AppCompat.Menu"
             android:textColor="#0094fd"
