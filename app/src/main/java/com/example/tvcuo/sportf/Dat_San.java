@@ -2,14 +2,12 @@ package com.example.tvcuo.sportf;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Editable;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -27,11 +25,9 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
-import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
 public class Dat_San extends AppCompatActivity {
 Spinner spinner;
@@ -172,7 +168,16 @@ public static ArrayList<DonDatTruoc> donDatTruocArrayList;
                 checkBoxSoGio.setVisibility(View.VISIBLE);
                 textViewSoGio.setText(editTextSoGio.getText().toString());
                 soGio= (String) editTextSoGio.getText().toString();
-                textViewtongtien.setText(Integer.toString(tongTien*Integer.parseInt(soGio)));
+                if(soGio.equals(""))
+                {
+                    soGio="1";
+                }
+                else textViewtongtien.setText(Integer.toString(tongTien*Integer.parseInt(soGio)));
+                if (textViewtongtien.getText().toString().equals("Tổng tiền"))
+                {
+                    tongTien=120000;
+                }
+                else tongTien=Integer.parseInt(textViewtongtien.getText().toString());
 
             }
         });
@@ -274,7 +279,7 @@ public static ArrayList<DonDatTruoc> donDatTruocArrayList;
 
     public void dialogXacNhanTraTaiCho(){
         final AlertDialog.Builder dialogXoa= new AlertDialog.Builder(this);
-        dialogXoa.setMessage("Bạn phải thanh toán số tiền"+ tongTien +" trước 15 phút tại sân. Nếu không đơn đặt trước sẽ bị hủy");
+        dialogXoa.setMessage("Bạn phải thanh toán số tiền: "+ tongTien +" trước 15 phút tại sân. Nếu không đơn đặt trước sẽ bị hủy");
         dialogXoa.setNegativeButton("Không", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -312,7 +317,7 @@ public static ArrayList<DonDatTruoc> donDatTruocArrayList;
         imageViewHinhAnh=findViewById(R.id.imageView_DatSan_HinhAnh);
         checkBoxSoGio=findViewById(R.id.checkBoxSogio);
         editTextSoGio=findViewById(R.id.editTextSoGio);
-        textViewSoGio=findViewById(R.id.textViewSoGio);
+        textViewSoGio=findViewById(R.id.textViewSoGio_dt);
         buttonXacNhan=findViewById(R.id.buttonXacNhan);
         checkBoxChonNgay.setVisibility(View.INVISIBLE);
         checkBoxChonGio.setVisibility(View.INVISIBLE);
@@ -350,7 +355,7 @@ public static ArrayList<DonDatTruoc> donDatTruocArrayList;
                 SimpleDateFormat simpleDateFormat= new SimpleDateFormat("dd/MM/yyyy");
                 editTextNgay.setText(simpleDateFormat.format(calendar.getTime()));
                 textViewngay.setText(simpleDateFormat.format(calendar.getTime()));
-                ngayChon= editTextSoGio.getText().toString();
+                ngayChon= editTextNgay.getText().toString();
             }
         },Nam,Thang,Ngay);
         datePickerDialog.show();

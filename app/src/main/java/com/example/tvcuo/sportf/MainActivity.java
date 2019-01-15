@@ -41,7 +41,7 @@ public static ArrayList<SanBong> sanBongArrayList;
 
         checkFirstTime();
 
-        insertDataDatTruoc();
+
 
         initView();
         control();
@@ -54,6 +54,7 @@ public static ArrayList<SanBong> sanBongArrayList;
         if(SharedPreferencesManager.isFirstTimeSetup()){
             insertDataBaseSanBong();
             insertDataBaseHinhAnh();
+            insertDataDatTruoc();
             insertDataBinhLuan();
             SharedPreferencesManager.setFirstTimeSetup(false);
         }
@@ -718,7 +719,7 @@ public static ArrayList<SanBong> sanBongArrayList;
         btnDatTruoc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(MainActivity.this, Dat_Truoc_Activity.class));
             }
         });
 

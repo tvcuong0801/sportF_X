@@ -24,13 +24,13 @@
         android:id="@+id/textViewLoaSan_dt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="84dp"
+        android:layout_marginEnd="20dp"
         android:text="Loại Sân"
         app:layout_constraintEnd_toStartOf="@+id/textViewTenSan_DT"
         app:layout_constraintTop_toBottomOf="@+id/textViewTenSan_DT" />
 
     <TextView
-        android:id="@+id/textViewNgayDat"
+        android:id="@+id/textViewNgayDat_dt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -39,41 +39,41 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewLoaSan_dt" />
 
     <TextView
-        android:id="@+id/textViewGioDat"
+        android:id="@+id/textViewGioDat_dt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="75dp"
         android:text="Giờ đặt"
-        app:layout_constraintStart_toEndOf="@+id/textViewNgayDat"
-        app:layout_constraintTop_toTopOf="@+id/textViewNgayDat" />
+        app:layout_constraintStart_toEndOf="@+id/textViewNgayDat_dt"
+        app:layout_constraintTop_toTopOf="@+id/textViewNgayDat_dt" />
 
     <TextView
-        android:id="@+id/textViewSoGio"
+        android:id="@+id/textViewSoGio_dt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Số giờ đặt"
-        app:layout_constraintStart_toStartOf="@+id/textViewNgayDat"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNgayDat" />
+        app:layout_constraintStart_toStartOf="@+id/textViewNgayDat_dt"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNgayDat_dt" />
 
     <TextView
-        android:id="@+id/textViewGhiChu"
+        android:id="@+id/textViewGhiChu_dt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Ghi chú"
-        app:layout_constraintStart_toStartOf="@+id/textViewSoGio"
-        app:layout_constraintTop_toBottomOf="@+id/textViewSoGio" />
+        app:layout_constraintStart_toStartOf="@+id/textViewSoGio_dt"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSoGio_dt" />
 
     <TextView
-        android:id="@+id/textViewTinhTrang"
+        android:id="@+id/textViewTinhTrang_dt"
         android:layout_width="wrap_content"
         android:layout_height="18dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:text="Tình trạng thanh toán"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textViewGhiChu"
-        app:layout_constraintTop_toBottomOf="@+id/textViewGhiChu" />
+        app:layout_constraintStart_toStartOf="@+id/textViewGhiChu_dt"
+        app:layout_constraintTop_toBottomOf="@+id/textViewGhiChu_dt" />
 
 </android.support.constraint.ConstraintLayout>
