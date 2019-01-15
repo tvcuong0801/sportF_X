@@ -30,14 +30,14 @@ public class SharedPreferencesManager {
        return sPreferences.getBoolean("login", false);
     }
 
-    public static void setIDFB(String email){
+    public static void setEmail(String email){
         SharedPreferences.Editor editor= sPreferences.edit();
-        editor.putString("IDFB",email);
+        editor.putString("email",email);
         editor.apply();
     }
 
-    public static String getIDFB(){
-        return sPreferences.getString("IDFB","");
+    public static String getEmail(){
+        return sPreferences.getString("email","");
     }
 
 

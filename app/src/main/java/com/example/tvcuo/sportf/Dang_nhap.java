@@ -67,7 +67,7 @@ String email, name, firstname;
                 buttonLogout.setVisibility(View.INVISIBLE);
                 textNameProfile.setText("");
                 imageProfile.setProfileId(null);
-                SharedPreferencesManager.setIDFB("");
+                SharedPreferencesManager.setEmail("");
                 buttonLogin.setVisibility(View.VISIBLE);
                 SharedPreferencesManager.setLogin(false);
             }
@@ -114,7 +114,7 @@ String email, name, firstname;
                     name=object.getString("name");
                     firstname=object.getString("first_name");
                     imageProfile.setProfileId(Profile.getCurrentProfile().getId());
-                    SharedPreferencesManager.setIDFB(Profile.getCurrentProfile().getId());
+                    SharedPreferencesManager.setEmail(email);
                     textNameProfile.setText(name);
                 } catch (JSONException e) {
                     e.printStackTrace();

@@ -35,6 +35,7 @@ public class DataBaseSanBong extends SQLiteOpenHelper {
         statement.executeInsert();
     }
 
+
     public void Insert(String ten, String diachi, int loai, double danhgia, String hinhAnh){
         SQLiteDatabase database= getWritableDatabase();
         String sql= "INSERT INTO SanBong VALUES(null, ?, ?, ?, ?, ?)";
@@ -45,6 +46,24 @@ public class DataBaseSanBong extends SQLiteOpenHelper {
         statement.bindLong(3,loai);
         statement.bindDouble(4,danhgia);
         statement.bindString(5,hinhAnh);
+        statement.executeInsert();
+    }
+
+    public void InsertDataDatTruoc(String email, int idSB, String loaiSan, String ngay, String gio, String soGio, String ghiChu, int daThanhToan, int tongTien)
+    {
+        SQLiteDatabase database= getWritableDatabase();
+        String sql= "INSERT INTO DonDatTruoc VALUES(null, ?, ?, ?, ?, ?,?,?,?,?)";
+        SQLiteStatement statement= database.compileStatement(sql);
+        statement.clearBindings();
+        statement.bindString(1,email);
+        statement.bindLong(2,idSB);
+        statement.bindString(3,loaiSan);
+        statement.bindString(4,ngay);
+        statement.bindString(5,gio);
+        statement.bindString(6,soGio);
+        statement.bindString(7,ghiChu);
+        statement.bindLong(8,daThanhToan);
+        statement.bindLong(9,tongTien);
         statement.executeInsert();
     }
 

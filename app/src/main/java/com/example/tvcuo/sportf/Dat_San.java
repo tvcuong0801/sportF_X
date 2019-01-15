@@ -1,16 +1,21 @@
 package com.example.tvcuo.sportf;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -28,29 +33,39 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-import static android.widget.Toast.LENGTH_LONG;
-
 public class Dat_San extends AppCompatActivity {
 Spinner spinner;
 ArrayList<String> arrayListLoaiSan;
 String chonSan;
+String email;
+String ngayChon;
+String gioChon;
+String soGio;
+int tongTien=120000;
 ImageView imageViewHinhAnh;
 RadioButton radioButtonTaiCho, radioButtonTrucTuyen;
 CheckBox checkBoxChonSan, checkBoxChonNgay, checkBoxChonGio, checkBoxSoGio;
 EditText editTextNgay, editTextGio, editTextGhiChu, editTextSoGio;
 DataBaseSanBong dataBaseSanBong;
 int idSB;
-TextView textViewten, textViewngay, textViewgio, textViewtongtien, textViewloaiSan, textViewSoGio;
+public static DonDatTruoc donDatTruoc;
+TextView textViewten;
+TextView textViewngay;
+TextView textViewgio;
+TextView textViewtongtien;
+TextView textViewloaiSan;
+TextView textViewSoGio;
 Button buttonXacNhan;
+
+public static ArrayList<DonDatTruoc> donDatTruocArrayList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dat_san);
         innitView();
+        donDatTruocArrayList= new ArrayList<>();
 
-
-
-
+        email=SharedPreferencesManager.getEmail();
         idSB= SharedPreferencesManager.getIdSB_Hinh_Anh();
 
         Cursor cursor= dataBaseSanBong.getDataSql("SELECT * FROM SanBong WHERE Id = "+idSB);
@@ -65,6 +80,26 @@ Button buttonXacNhan;
                     cursor.getString(5));
 
         }
+
+        Cursor cursor1= dataBaseSanBong.getDataSql("SELECT * FROM DonDatTruoc");
+        while (cursor1.moveToNext())
+        {
+            donDatTruocArrayList.add(new DonDatTruoc(
+                    cursor1.getInt(0),
+                    cursor1.getString(1),
+                    cursor1.getInt(2),
+                    cursor1.getString(3),
+                    cursor1.getString(4),
+                    cursor1.getString(5),
+                    cursor1.getString(6),
+                    cursor1.getString(7),
+                    cursor1.getInt(8),
+                    cursor1.getInt(9)
+            ));
+        }
+
+
+
 
         String url= sanBong.getHinhAnh();
         Picasso.get().load(url).into(imageViewHinhAnh);
@@ -107,7 +142,13 @@ Button buttonXacNhan;
                 arrayListLoaiSan);
         adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+
+
+
         control();
+
+
+
 
     }
 
@@ -129,7 +170,10 @@ Button buttonXacNhan;
             @Override
             public void onClick(View v) {
                 checkBoxSoGio.setVisibility(View.VISIBLE);
-                textViewSoGio.setText("Số giờ "+editTextSoGio.getText());
+                textViewSoGio.setText(editTextSoGio.getText().toString());
+                soGio= (String) editTextSoGio.getText().toString();
+                textViewtongtien.setText(Integer.toString(tongTien*Integer.parseInt(soGio)));
+
             }
         });
 
@@ -160,6 +204,93 @@ Button buttonXacNhan;
         });
 
 
+
+
+        buttonXacNhan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(textViewSoGio.getText().toString().equals("Số giờ")||textViewngay.getText().toString().equals("Ngày")||textViewgio.getText().toString().equals("Giờ"))
+                {
+                    dialogBaoTrung();
+                }
+
+                if(radioButtonTrucTuyen.isChecked())
+                {
+                    startActivity(new Intent(Dat_San.this,Thanh_Toan_Activity.class));
+                    donDatTruoc= new DonDatTruoc(donDatTruocArrayList.size()+1,email,idSB,chonSan,ngayChon,gioChon,soGio,editTextGhiChu.getText().toString(),1,tongTien);
+                }
+                else if(radioButtonTaiCho.isChecked())
+                {
+
+
+                    dialogXacNhanTraTaiCho();
+                }
+
+
+
+            }
+        });
+
+
+        radioButtonTaiCho.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(radioButtonTrucTuyen.isChecked()&&radioButtonTaiCho.isChecked())
+                {
+                    radioButtonTrucTuyen.setChecked(false);
+                }
+            }
+        });
+        radioButtonTrucTuyen.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(radioButtonTaiCho.isChecked()&&radioButtonTrucTuyen.isChecked())
+                {
+                    radioButtonTaiCho.setChecked(false);
+                }
+            }
+        });
+    }
+
+    public void dialogBaoTrung(){
+        final AlertDialog.Builder dialogXoa= new AlertDialog.Builder(this);
+        dialogXoa.setMessage("Bạn phải điền đủ thông tin, xin mời đặt lại!");
+        dialogXoa.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                startActivity(new Intent(Dat_San.this,MainActivity.class));
+            }
+        });
+        dialogXoa.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent= new Intent(Dat_San.this,XemSan_Activity.class);
+                intent.putExtra("id",idSB);
+                startActivity(intent);
+            }
+        });
+        dialogXoa.show();
+    }
+
+    public void dialogXacNhanTraTaiCho(){
+        final AlertDialog.Builder dialogXoa= new AlertDialog.Builder(this);
+        dialogXoa.setMessage("Bạn phải thanh toán số tiền"+ tongTien +" trước 15 phút tại sân. Nếu không đơn đặt trước sẽ bị hủy");
+        dialogXoa.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                startActivity(new Intent(Dat_San.this,MainActivity.class));
+            }
+        });
+        dialogXoa.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                MainActivity.insertDatTruoc(email,idSB,chonSan,ngayChon,gioChon,soGio,editTextGhiChu.getText().toString(),0,tongTien);
+                Intent intent= new Intent(Dat_San.this,Dat_Truoc_Activity.class);
+                startActivity(intent);
+                Toast.makeText(Dat_San.this,"xong",Toast.LENGTH_LONG).show();
+            }
+        });
+        dialogXoa.show();
     }
 
     private void innitView() {
@@ -200,7 +331,8 @@ Button buttonXacNhan;
                 SimpleDateFormat simpleDateFormat= new SimpleDateFormat("HH:mm");
                 calendar.set(0,0,0,hourOfDay,minute);
                 editTextGio.setText(simpleDateFormat.format(calendar.getTime()));
-                textViewgio.setText("Giờ "+simpleDateFormat.format(calendar.getTime()));
+                textViewgio.setText(simpleDateFormat.format(calendar.getTime()));
+                gioChon= editTextGio.getText().toString();
             }
         },gio,phut,true);
         timePickerDialog.show();
@@ -217,7 +349,8 @@ Button buttonXacNhan;
                 calendar.set(year,month,dayOfMonth);
                 SimpleDateFormat simpleDateFormat= new SimpleDateFormat("dd/MM/yyyy");
                 editTextNgay.setText(simpleDateFormat.format(calendar.getTime()));
-                textViewngay.setText("Ngày "+simpleDateFormat.format(calendar.getTime()));
+                textViewngay.setText(simpleDateFormat.format(calendar.getTime()));
+                ngayChon= editTextSoGio.getText().toString();
             }
         },Nam,Thang,Ngay);
         datePickerDialog.show();

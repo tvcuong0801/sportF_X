@@ -137,8 +137,16 @@ ArrayList<BinhLuan> binhLuanArrayList;
         btnDatSan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferencesManager.setIdSB_Hinh_Anh(idSB);
-                startActivity(new Intent(XemSan_Activity.this,Dat_San.class));
+                if(!SharedPreferencesManager.isLogin()){
+                    Toast.makeText(XemSan_Activity.this,"Bạn phải đăng nhập trước khi đặt sân",Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(XemSan_Activity.this,Dang_nhap.class));
+                }
+                else
+                {
+                    SharedPreferencesManager.setIdSB_Hinh_Anh(idSB);
+                    startActivity(new Intent(XemSan_Activity.this,Dat_San.class));
+                }
+
 
             }
         });

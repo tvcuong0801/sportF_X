@@ -21,6 +21,10 @@ public static DataBaseSanBong dataBaseSanBong;
 public static DataBaseHinhAnh dataBaseHinhAnh;
 public static ArrayList<SanBong> sanBongArrayList;
 
+    public static void insertDatTruoc(String email, int idSB, String chonSan, String ngayChon, String gioChon, String soGio, String ghiChu, int daThanhToan, int tongTien) {
+        dataBaseSanBong.InsertDataDatTruoc(email,idSB,chonSan,ngayChon,gioChon,soGio,ghiChu,daThanhToan,tongTien);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,22 +32,22 @@ public static ArrayList<SanBong> sanBongArrayList;
         setContentView(R.layout.activity_main);
 
         dataBaseSanBong= new DataBaseSanBong(this,"sanbong.sqlite",null,1);
-        dataBaseSanBong.queryData("CREATE TABLE IF NOT EXISTS SanBong(Id INTEGER PRIMARY KEY AUTOINCREMENT, Ten NVARCHAR(250), DiaChi NVARCHAR(250), Loai LONG, DanhGia DOUBLE, HinhAnh NVARCHAR(300))");
+        dataBaseSanBong.queryData("CREATE TABLE IF NOT EXISTS SanBong(Id INTEGER PRIMARY KEY AUTOINCREMENT, Ten NVARCHAR(250), DiaChi NVARCHAR(250), Loai INTEGER(2), DanhGia DOUBLE(2), HinhAnh NVARCHAR(300))");
         dataBaseSanBong.queryData("CREATE TABLE IF NOT EXISTS BinhLuan(Idbl INTEGER PRIMARY KEY AUTOINCREMENT, IdSB LONG , Cmt NVARCHAR(300), HinhAnh NVARCHAR(500), Ten NVARCHAR (50), DanhGia LONG)");
+        dataBaseSanBong.queryData("CREATE TABLE IF NOT EXISTS DonDatTruoc (IdDT INTEGER PRIMARY KEY AUTOINCREMENT, Email NVARCHAR(50), IdSB LONG(2), LoaiSan NVARCHAR(50), Ngay NVARCHAR(20), Gio NVARCHAR(20), SoGio NVARCHAR(2), GhiChu NVARCHAR(250), DaThanhToan INTEGER(2), TongTien INTEGER(2))");
         dataBaseHinhAnh= new DataBaseHinhAnh(this,"hinhanh.sqlite",null,1);
         dataBaseHinhAnh.queryData("CREATE TABLE IF NOT EXISTS HinhAnh(IdHA INTEGER PRIMARY KEY AUTOINCREMENT, IdSB LONG , Url NVARCHAR(300))");
 
 
         checkFirstTime();
 
-        if(SharedPreferencesManager.isLogin())
-        {
-            Toast.makeText(this,SharedPreferencesManager.getIDFB(),Toast.LENGTH_SHORT).show();
-        }
+        insertDataDatTruoc();
 
         initView();
         control();
     }
+
+
 
     private void checkFirstTime(){
         SharedPreferencesManager.init(this);
@@ -80,6 +84,7 @@ public static ArrayList<SanBong> sanBongArrayList;
             ));
         }
         adapter_listSanBong.notifyDataSetChanged();
+
 
     }
 //1 3 6 8 11 13 16 18 21 23
@@ -697,6 +702,9 @@ public static ArrayList<SanBong> sanBongArrayList;
         dataBaseSanBong.Insert("Basket","93 Võ Văn Ngân, Linh Trung, Thủ Đức", 4, 2.5,
                 "https://i.ytimg.com/vi/3d9d9WRuPFE/maxresdefault.jpg");
     }
+    private void insertDataDatTruoc() {
+        dataBaseSanBong.InsertDataDatTruoc("nodoann@gmail.com", 1, "Sân 20 người", "17/01/2019", "14:30","1"," ", 1,120000); }
+
 
     private void control(){
         btnKhamPha.setOnClickListener(new View.OnClickListener() {

@@ -20,8 +20,8 @@
 
     <EditText
         android:id="@+id/editTextGio"
-        android:layout_width="272dp"
-        android:layout_height="49dp"
+        android:layout_width="240dp"
+        android:layout_height="50dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="4dp"
         android:ems="10"
@@ -65,9 +65,9 @@
     <Spinner
 
         android:id="@+id/spinner1"
-        android:layout_width="331dp"
+        android:layout_width="280dp"
         android:layout_height="44dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="55dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView_DatSan_HinhAnh" />
@@ -76,7 +76,6 @@
         android:id="@+id/checkBoxChonSan"
         android:layout_width="34dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:checked="true"
         android:clickable="false"
@@ -118,8 +117,8 @@
 
     <EditText
         android:id="@+id/editTextNgay"
-        android:layout_width="272dp"
-        android:layout_height="49dp"
+        android:layout_width="240dp"
+        android:layout_height="50dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textPersonName"
@@ -178,6 +177,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Tổng tiền"
+            android:textColor="@color/com_facebook_blue"
+            android:textSize="15dp"
             android:textAppearance="@style/TextAppearance.AppCompat"
             app:layout_constraintStart_toStartOf="@+id/textView_Loaisan_datsan"
             app:layout_constraintTop_toBottomOf="@+id/textView_Loaisan_datsan" />
@@ -252,8 +253,8 @@
 
     <EditText
         android:id="@+id/editTextSoGio"
-        android:layout_width="272dp"
-        android:layout_height="49dp"
+        android:layout_width="240dp"
+        android:layout_height="50dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="number"

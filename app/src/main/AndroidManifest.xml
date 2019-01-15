@@ -47,7 +47,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".Dang_nhap" />
-        <activity android:name=".Dat_San"></activity>
+        <activity android:name=".Dat_San" />
+        <activity android:name=".Thanh_Toan_Activity" />
+        <activity android:name=".Dat_Truoc_Activity"></activity>
     </application>
 
 </manifest>

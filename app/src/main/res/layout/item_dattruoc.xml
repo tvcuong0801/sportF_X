@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/textViewTenSan_DT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="173dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="174dp"
+        android:text="Tên Sân"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewLoaSan_dt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="84dp"
+        android:text="Loại Sân"
+        app:layout_constraintEnd_toStartOf="@+id/textViewTenSan_DT"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTenSan_DT" />
+
+    <TextView
+        android:id="@+id/textViewNgayDat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Ngày đặt"
+        app:layout_constraintStart_toStartOf="@+id/textViewLoaSan_dt"
+        app:layout_constraintTop_toBottomOf="@+id/textViewLoaSan_dt" />
+
+    <TextView
+        android:id="@+id/textViewGioDat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="75dp"
+        android:text="Giờ đặt"
+        app:layout_constraintStart_toEndOf="@+id/textViewNgayDat"
+        app:layout_constraintTop_toTopOf="@+id/textViewNgayDat" />
+
+    <TextView
+        android:id="@+id/textViewSoGio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Số giờ đặt"
+        app:layout_constraintStart_toStartOf="@+id/textViewNgayDat"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNgayDat" />
+
+    <TextView
+        android:id="@+id/textViewGhiChu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Ghi chú"
+        app:layout_constraintStart_toStartOf="@+id/textViewSoGio"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSoGio" />
+
+    <TextView
+        android:id="@+id/textViewTinhTrang"
+        android:layout_width="wrap_content"
+        android:layout_height="18dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Tình trạng thanh toán"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textViewGhiChu"
+        app:layout_constraintTop_toBottomOf="@+id/textViewGhiChu" />
+
+</android.support.constraint.ConstraintLayout>
