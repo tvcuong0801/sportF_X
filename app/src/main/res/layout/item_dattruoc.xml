@@ -4,10 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/layout_border"
     android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/textViewTenSan_DT"
+        android:textColor="@color/com_facebook_blue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="173dp"
@@ -21,15 +23,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:textColor="@color/colorPrimaryDark"
         android:id="@+id/textViewLoaSan_dt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
+        android:layout_marginStart="52dp"
         android:text="Loại Sân"
-        app:layout_constraintEnd_toStartOf="@+id/textViewTenSan_DT"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewTenSan_DT" />
 
     <TextView
+        android:textColor="@color/colorPrimaryDark"
         android:id="@+id/textViewNgayDat_dt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -39,6 +43,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewLoaSan_dt" />
 
     <TextView
+        android:textColor="@color/colorPrimaryDark"
         android:id="@+id/textViewGioDat_dt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -48,6 +53,7 @@
         app:layout_constraintTop_toTopOf="@+id/textViewNgayDat_dt" />
 
     <TextView
+        android:textColor="@color/colorPrimaryDark"
         android:id="@+id/textViewSoGio_dt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -57,6 +63,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewNgayDat_dt" />
 
     <TextView
+        android:textColor="@color/colorPrimaryDark"
         android:id="@+id/textViewGhiChu_dt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -66,6 +73,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewSoGio_dt" />
 
     <TextView
+        android:textColor="@color/colorPrimaryDark"
         android:id="@+id/textViewTinhTrang_dt"
         android:layout_width="wrap_content"
         android:layout_height="18dp"

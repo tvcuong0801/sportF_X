@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -44,7 +45,7 @@ ArrayList<BinhLuan> binhLuanArrayList;
         listViewCmt=findViewById(R.id.list_Binh_Luan);
         binhLuanArrayList= new ArrayList<BinhLuan>();
         btnDatSan= findViewById(R.id.buttonDatSan);
-
+        SharedPreferencesManager.setIdSB_Hinh_Anh(idSB);
         Cursor cursorCmt= dataBaseSanBong.getDataSql("SELECT * FROM BinhLuan WHERE IdSB = "+ idSB);
         Adapter_BinhLuan adapter_binhLuan= new Adapter_BinhLuan(this, R.layout.item_binhluan, binhLuanArrayList);
         listViewCmt.setAdapter(adapter_binhLuan);
@@ -57,7 +58,20 @@ ArrayList<BinhLuan> binhLuanArrayList;
                     cursorCmt.getInt(5)));
         }
         adapter_binhLuan.notifyDataSetChanged();
-
+        listViewCmt.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if(!SharedPreferencesManager.isLogin()){
+                    Toast.makeText(XemSan_Activity.this,"Bạn phải đăng nhập trước khi đặt sân",Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(XemSan_Activity.this,Dang_nhap.class));
+                }
+                else
+                {
+                    SharedPreferencesManager.setIdSB_Hinh_Anh(idSB);
+                    startActivity(new Intent(XemSan_Activity.this,Binh_Luan_Activity.class));
+                }
+            }
+        });
         Cursor cursor= dataBaseSanBong.getDataSql("SELECT * FROM SanBong WHERE Id = "+idSB);
         SanBong sanBong = null;
         while (cursor.moveToNext()) {

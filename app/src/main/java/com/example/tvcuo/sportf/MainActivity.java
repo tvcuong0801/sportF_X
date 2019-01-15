@@ -25,6 +25,10 @@ public static ArrayList<SanBong> sanBongArrayList;
         dataBaseSanBong.InsertDataDatTruoc(email,idSB,chonSan,ngayChon,gioChon,soGio,ghiChu,daThanhToan,tongTien);
     }
 
+    public static void InsertCMT(int idSB, String s, int i) {
+        dataBaseSanBong.InsertBinhLuan(idSB,s,"https://cdn.iconscout.com/icon/free/png-256/avatar-372-456324.png",SharedPreferencesManager.getTenFB(),i);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +41,7 @@ public static ArrayList<SanBong> sanBongArrayList;
         dataBaseSanBong.queryData("CREATE TABLE IF NOT EXISTS DonDatTruoc (IdDT INTEGER PRIMARY KEY AUTOINCREMENT, Email NVARCHAR(50), IdSB LONG(2), LoaiSan NVARCHAR(50), Ngay NVARCHAR(20), Gio NVARCHAR(20), SoGio NVARCHAR(2), GhiChu NVARCHAR(250), DaThanhToan INTEGER(2), TongTien INTEGER(2))");
         dataBaseHinhAnh= new DataBaseHinhAnh(this,"hinhanh.sqlite",null,1);
         dataBaseHinhAnh.queryData("CREATE TABLE IF NOT EXISTS HinhAnh(IdHA INTEGER PRIMARY KEY AUTOINCREMENT, IdSB LONG , Url NVARCHAR(300))");
-
+        //dataBaseSanBong.queryData("UPDATE SanBong SET HinhAnh ='"+"http://asiansports.com.vn/wp-content/uploads/2017/07/IMG_20170619_210927-450x600.jpg"+"' WHERE Ten = '"+"Basket"+"'");
 
         checkFirstTime();
 
@@ -719,7 +723,16 @@ public static ArrayList<SanBong> sanBongArrayList;
         btnDatTruoc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, Dat_Truoc_Activity.class));
+                if(!SharedPreferencesManager.isLogin()){
+                    Toast.makeText(MainActivity.this,"Bạn phải đăng nhập trước khi đặt sân",Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(MainActivity.this,Dang_nhap.class));
+                }
+                else
+                {
+
+                    startActivity(new Intent(MainActivity.this, Dat_Truoc_Activity.class));
+                }
+
             }
         });
 

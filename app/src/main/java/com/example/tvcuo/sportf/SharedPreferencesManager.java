@@ -41,6 +41,15 @@ public class SharedPreferencesManager {
     }
 
 
+    public static void setTenFB(String tenFB)
+    {
+        SharedPreferences.Editor editor= sPreferences.edit();
+        editor.putString("nameFB",tenFB);
+        editor.apply();
+    }
+    public static String getTenFB() { return sPreferences.getString("nameFB","");}
+
+
     public static void setFirstTimeSetup(boolean isFirstTime) {
         SharedPreferences.Editor editor = sPreferences.edit();
         editor.putBoolean(PREF_FIRST_TIME_SETUP, isFirstTime);

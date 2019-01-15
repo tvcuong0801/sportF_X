@@ -11,6 +11,8 @@ import com.facebook.Profile;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+
+import android.content.SharedPreferences;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -68,6 +70,7 @@ String email, name, firstname;
                 textNameProfile.setText("");
                 imageProfile.setProfileId(null);
                 SharedPreferencesManager.setEmail("");
+                SharedPreferencesManager.setTenFB("");
                 buttonLogin.setVisibility(View.VISIBLE);
                 SharedPreferencesManager.setLogin(false);
             }
@@ -86,6 +89,7 @@ String email, name, firstname;
                 buttonLogout.setVisibility(View.VISIBLE);
 
                 SharedPreferencesManager.setLogin(true);
+
 
 
             }
@@ -116,6 +120,7 @@ String email, name, firstname;
                     imageProfile.setProfileId(Profile.getCurrentProfile().getId());
                     SharedPreferencesManager.setEmail(email);
                     textNameProfile.setText(name);
+                    SharedPreferencesManager.setTenFB(name);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
