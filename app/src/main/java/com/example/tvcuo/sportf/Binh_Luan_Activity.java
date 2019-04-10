@@ -45,6 +45,7 @@ public class Binh_Luan_Activity extends AppCompatActivity {
                 else
                 {
                     MainActivity.InsertCMT(idSB,editText.getText().toString(),Integer.parseInt(editTextDanhGia.getText().toString()));
+                    binhLuanArrayList.clear();
                     loadCMT();
                 }
 

@@ -44,9 +44,6 @@ public static ArrayList<SanBong> sanBongArrayList;
         //dataBaseSanBong.queryData("UPDATE SanBong SET HinhAnh ='"+"http://asiansports.com.vn/wp-content/uploads/2017/07/IMG_20170619_210927-450x600.jpg"+"' WHERE Ten = '"+"Basket"+"'");
 
         checkFirstTime();
-
-
-
         initView();
         control();
     }

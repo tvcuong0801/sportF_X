@@ -10,7 +10,6 @@
         android:id="@+id/listView_BinhLuan_bl"
         android:layout_width="0dp"
         android:layout_height="548dp"
-        android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/editTextBinhLuan_bl"
         app:layout_constraintEnd_toEndOf="parent"

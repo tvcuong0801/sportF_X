@@ -53,9 +53,11 @@ TextView textViewloaiSan;
 TextView textViewSoGio;
 Button buttonXacNhan;
 
+
 public static ArrayList<DonDatTruoc> donDatTruocArrayList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dat_san);
         innitView();
@@ -138,9 +140,6 @@ public static ArrayList<DonDatTruoc> donDatTruocArrayList;
                 arrayListLoaiSan);
         adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-
-
-
         control();
 
 
@@ -286,6 +285,9 @@ public static ArrayList<DonDatTruoc> donDatTruocArrayList;
                 startActivity(new Intent(Dat_San.this,MainActivity.class));
             }
         });
+
+
+
         dialogXoa.setPositiveButton("Có", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
