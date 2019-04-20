@@ -30,16 +30,13 @@ public class Binh_Luan_Activity extends AppCompatActivity {
         idSB=SharedPreferencesManager.getIdSB_Hinh_Anh();
         adapter_binhLuan= new Adapter_BinhLuan(this,R.layout.item_binhluan,binhLuanArrayList);
         listView.setAdapter(adapter_binhLuan);
-
         loadCMT();
-
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(editText.getText().toString().equals(""))
                 {
                     if(editTextDanhGia.getText().toString().equals(""))
-                    Toast.makeText(Binh_Luan_Activity.this,"Bạn chưa nhập bình luận",Toast.LENGTH_LONG).show();
                     Toast.makeText(Binh_Luan_Activity.this,"Bạn chưa nhập bình luận",Toast.LENGTH_LONG).show();
                 }
                 else
