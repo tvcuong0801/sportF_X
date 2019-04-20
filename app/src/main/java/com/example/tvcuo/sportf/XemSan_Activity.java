@@ -43,12 +43,14 @@ ArrayList<BinhLuan> binhLuanArrayList;
         imageViewChiDuong=findViewById(R.id.imageViewChiDuong);
         btnLienHe=findViewById(R.id.buttonGoi_dt);
         listViewCmt=findViewById(R.id.list_Binh_Luan);
+
         binhLuanArrayList= new ArrayList<>();
         btnDatSan= findViewById(R.id.buttonDatSan);
         SharedPreferencesManager.setIdSB_Hinh_Anh(idSB);
         Cursor cursorCmt= dataBaseSanBong.getDataSql("SELECT * FROM BinhLuan WHERE IdSB = "+ idSB);
         Adapter_BinhLuan adapter_binhLuan= new Adapter_BinhLuan(this, R.layout.item_binhluan, binhLuanArrayList);
         listViewCmt.setAdapter(adapter_binhLuan);
+
         while (cursorCmt.moveToNext()){
             binhLuanArrayList.add(new BinhLuan(cursorCmt.getInt(0),
                     cursorCmt.getInt(1),
@@ -58,6 +60,7 @@ ArrayList<BinhLuan> binhLuanArrayList;
                     cursorCmt.getInt(5)));
         }
         adapter_binhLuan.notifyDataSetChanged();
+
         listViewCmt.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -72,6 +75,7 @@ ArrayList<BinhLuan> binhLuanArrayList;
                 }
             }
         });
+
         Cursor cursor= dataBaseSanBong.getDataSql("SELECT * FROM SanBong WHERE Id = "+idSB);
         SanBong sanBong = null;
         while (cursor.moveToNext()) {

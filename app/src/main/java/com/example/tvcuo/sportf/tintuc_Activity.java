@@ -1,6 +1,7 @@
 package com.example.tvcuo.sportf;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,7 +26,6 @@ ProgressBar progressBar;
     }
 
     public class MyWebViewClient extends WebViewClient {
-
 
         public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);
@@ -56,6 +56,9 @@ ProgressBar progressBar;
         if((keyCode==KeyEvent.KEYCODE_BACK) && webView.canGoBack()){
             webView.goBack();
             return true;
+        }
+        else if(keyCode==KeyEvent.KEYCODE_BACK){
+            startActivity(new Intent(this,MainActivity.class));
         }
         return super.onKeyDown(keyCode, event);
     }

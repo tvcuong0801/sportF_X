@@ -34,8 +34,9 @@ public static ArrayList<SanBong> sanBongArrayList;
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
-
+        // tạo file
         dataBaseSanBong= new DataBaseSanBong(this,"sanbong.sqlite",null,1);
+        //tạo bảng
         dataBaseSanBong.queryData("CREATE TABLE IF NOT EXISTS SanBong(Id INTEGER PRIMARY KEY AUTOINCREMENT, Ten NVARCHAR(250), DiaChi NVARCHAR(250), Loai INTEGER(2), DanhGia DOUBLE(2), HinhAnh NVARCHAR(300))");
         dataBaseSanBong.queryData("CREATE TABLE IF NOT EXISTS BinhLuan(Idbl INTEGER PRIMARY KEY AUTOINCREMENT, IdSB LONG , Cmt NVARCHAR(300), HinhAnh NVARCHAR(500), Ten NVARCHAR (50), DanhGia LONG)");
         dataBaseSanBong.queryData("CREATE TABLE IF NOT EXISTS DonDatTruoc (IdDT INTEGER PRIMARY KEY AUTOINCREMENT, Email NVARCHAR(50), IdSB LONG(2), LoaiSan NVARCHAR(50), Ngay NVARCHAR(20), Gio NVARCHAR(20), SoGio NVARCHAR(2), GhiChu NVARCHAR(250), DaThanhToan INTEGER(2), TongTien INTEGER(2))");
@@ -726,7 +727,6 @@ public static ArrayList<SanBong> sanBongArrayList;
                 }
                 else
                 {
-
                     startActivity(new Intent(MainActivity.this, Dat_Truoc_Activity.class));
                 }
 

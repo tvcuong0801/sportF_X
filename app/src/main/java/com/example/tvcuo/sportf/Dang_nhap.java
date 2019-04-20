@@ -40,18 +40,14 @@ String email, name, firstname;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         callbackManager=CallbackManager.Factory.create();
         setContentView(R.layout.activity_dang_nhap);
-
         imageProfile=findViewById(R.id.friendProfilePicture);
         buttonLogin=findViewById(R.id.login_button);
         buttonLogout=findViewById(R.id.logout_button);
         textNameProfile=findViewById(R.id.textView_ten_user);
-
         buttonLogout.setVisibility(View.INVISIBLE);
         textNameProfile.setText("");
-
         buttonLogin.setReadPermissions(Arrays.asList("public_profile","email"));
         setLogin_button();
         setLogout_button();
@@ -78,22 +74,14 @@ String email, name, firstname;
         buttonLogin.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-
                 result();
-
                 buttonLogin.setVisibility(View.INVISIBLE);
-
                 buttonLogout.setVisibility(View.VISIBLE);
-
                 SharedPreferencesManager.setLogin(true);
-
-
-
             }
 
             @Override
             public void onCancel() {
-
             }
 
             @Override
