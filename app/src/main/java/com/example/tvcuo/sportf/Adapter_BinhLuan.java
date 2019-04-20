@@ -15,7 +15,6 @@ public class Adapter_BinhLuan extends BaseAdapter {
     private Context context;
     private int layout;
     private List<BinhLuan> listBinhLuan;
-    private int i=1;
 
     Adapter_BinhLuan(Context context, int layout, List<BinhLuan> listBinhLuan) {
         this.context = context;
