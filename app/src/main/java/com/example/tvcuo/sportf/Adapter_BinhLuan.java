@@ -20,6 +20,7 @@ public class Adapter_BinhLuan extends BaseAdapter {
         this.context = context;
         this.layout = layout;
         this.listBinhLuan = listBinhLuan;
+
     }
 
 
