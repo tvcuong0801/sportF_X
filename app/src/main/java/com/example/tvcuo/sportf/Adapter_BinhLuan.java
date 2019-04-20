@@ -21,6 +21,7 @@ public class Adapter_BinhLuan extends BaseAdapter {
         this.layout = layout;
         this.listBinhLuan = listBinhLuan;
 
+
     }
 
 
