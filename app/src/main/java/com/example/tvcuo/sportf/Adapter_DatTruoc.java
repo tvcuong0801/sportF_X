@@ -1,16 +1,14 @@
 package com.example.tvcuo.sportf;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -19,7 +17,7 @@ public class Adapter_DatTruoc extends BaseAdapter {
     private int layout;
     private List<DonDatTruoc> datTruocList;
 
-    public Adapter_DatTruoc(Context context, int layout, List<DonDatTruoc> datTruocList) {
+    Adapter_DatTruoc(Context context, int layout, List<DonDatTruoc> datTruocList) {
         this.context = context;
         this.layout = layout;
         this.datTruocList = datTruocList;
@@ -43,6 +41,7 @@ public class Adapter_DatTruoc extends BaseAdapter {
         return 0;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 

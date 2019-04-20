@@ -1,5 +1,6 @@
 package com.example.tvcuo.sportf;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,9 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.squareup.picasso.Picasso;
-
 import java.util.List;
 
 public class Adapter_BinhLuan extends BaseAdapter {
@@ -17,7 +16,7 @@ public class Adapter_BinhLuan extends BaseAdapter {
     private int layout;
     private List<BinhLuan> listBinhLuan;
 
-    public Adapter_BinhLuan(Context context, int layout, List<BinhLuan> listBinhLuan) {
+    Adapter_BinhLuan(Context context, int layout, List<BinhLuan> listBinhLuan) {
         this.context = context;
         this.layout = layout;
         this.listBinhLuan = listBinhLuan;
@@ -45,6 +44,7 @@ public class Adapter_BinhLuan extends BaseAdapter {
         ImageView hinhAnh;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 

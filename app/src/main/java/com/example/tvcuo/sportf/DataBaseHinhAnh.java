@@ -7,11 +7,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
 
 public class DataBaseHinhAnh extends SQLiteOpenHelper {
-    public DataBaseHinhAnh( Context context, String name,  SQLiteDatabase.CursorFactory factory, int version) {
+    DataBaseHinhAnh(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
 
-    public void queryData(String sqlQuery){
+    void queryData(String sqlQuery){
         SQLiteDatabase database= getWritableDatabase();
         database.execSQL(sqlQuery);
     }
@@ -21,7 +21,7 @@ public class DataBaseHinhAnh extends SQLiteOpenHelper {
         return database.rawQuery(sqlQuery,null);
     }
 
-    public void Insert(int IdSB, String Url){
+    void Insert(int IdSB, String Url){
         SQLiteDatabase database= getWritableDatabase();
         String sql= "INSERT INTO HinhAnh VALUES(null, ?, ?)";
         SQLiteStatement statement= database.compileStatement(sql);

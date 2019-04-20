@@ -8,11 +8,11 @@ import android.database.sqlite.SQLiteStatement;
 
 
 public class DataBaseSanBong extends SQLiteOpenHelper {
-    public DataBaseSanBong(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+    DataBaseSanBong(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
 
-    public void queryData(String sqlQuery){
+    void queryData(String sqlQuery){
         SQLiteDatabase database= getWritableDatabase();
         database.execSQL(sqlQuery);
     }
@@ -22,7 +22,7 @@ public class DataBaseSanBong extends SQLiteOpenHelper {
         return database.rawQuery(sqlQuery,null);
     }
 
-    public void InsertBinhLuan(int idsb, String cmt, String hinhanh, String ten, int danhGia){
+    void InsertBinhLuan(int idsb, String cmt, String hinhanh, String ten, int danhGia){
         SQLiteDatabase database= getWritableDatabase();
         String sql="INSERT INTO BinhLuan VALUES(null,?,?,?,?,?)";
         SQLiteStatement statement= database.compileStatement(sql);
@@ -36,7 +36,7 @@ public class DataBaseSanBong extends SQLiteOpenHelper {
     }
 
 
-    public void Insert(String ten, String diachi, int loai, double danhgia, String hinhAnh){
+    void Insert(String ten, String diachi, int loai, double danhgia, String hinhAnh){
         SQLiteDatabase database= getWritableDatabase();
         String sql= "INSERT INTO SanBong VALUES(null, ?, ?, ?, ?, ?)";
         SQLiteStatement statement= database.compileStatement(sql);
@@ -49,7 +49,7 @@ public class DataBaseSanBong extends SQLiteOpenHelper {
         statement.executeInsert();
     }
 
-    public void InsertDataDatTruoc(String email, int idSB, String loaiSan, String ngay, String gio, String soGio, String ghiChu, int daThanhToan, int tongTien)
+    void InsertDataDatTruoc(String email, int idSB, String loaiSan, String ngay, String gio, String soGio, String ghiChu, int daThanhToan, int tongTien)
     {
         SQLiteDatabase database= getWritableDatabase();
         String sql= "INSERT INTO DonDatTruoc VALUES(null, ?, ?, ?, ?, ?,?,?,?,?)";

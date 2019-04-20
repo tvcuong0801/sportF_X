@@ -6,20 +6,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.TextView;
-
 import com.squareup.picasso.Picasso;
-
 import java.util.List;
-
-import static android.media.CamcorderProfile.get;
 
 public class Adapter_HinhAnh extends BaseAdapter {
     private Context context;
     private int layout;
     private List<HinhAnh> hinhAnhList;
 
-    public Adapter_HinhAnh(Context context, int layout, List<HinhAnh> hinhAnhList) {
+    Adapter_HinhAnh(Context context, int layout, List<HinhAnh> hinhAnhList) {
         this.context = context;
         this.layout = layout;
         this.hinhAnhList = hinhAnhList;

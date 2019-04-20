@@ -1,14 +1,14 @@
 package com.example.tvcuo.sportf;
 
 public class SanBong {
-    int idSB;
-    String ten;
-    String diaChi;
-    int loai;
-    double danhGia;
-    String hinhAnh;
+    private int idSB;
+    private String ten;
+    private String diaChi;
+    private int loai;
+    private double danhGia;
+    private String hinhAnh;
 
-    public SanBong(int idSB, String ten, String diaChi, int loai, double danhGia, String hinhAnh) {
+    SanBong(int idSB, String ten, String diaChi, int loai, double danhGia, String hinhAnh) {
         this.idSB = idSB;
         this.ten = ten;
         this.diaChi = diaChi;

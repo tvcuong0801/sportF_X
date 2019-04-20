@@ -8,7 +8,7 @@ public class BinhLuan {
     private String ten;
     private int danhGia;
 
-    public BinhLuan(int idbl, int idsb, String cmt, String hinhAnh, String ten, int danhGia) {
+    BinhLuan(int idbl, int idsb, String cmt, String hinhAnh, String ten, int danhGia) {
         this.idbl = idbl;
         this.idsb = idsb;
         this.cmt = cmt;
@@ -17,7 +17,7 @@ public class BinhLuan {
         this.danhGia = danhGia;
     }
 
-    public String getHinhAnh() {
+    String getHinhAnh() {
         return hinhAnh;
     }
 
@@ -25,7 +25,7 @@ public class BinhLuan {
         this.hinhAnh = hinhAnh;
     }
 
-    public String getTen() {
+    String getTen() {
         return ten;
     }
 
@@ -33,7 +33,7 @@ public class BinhLuan {
         this.ten = ten;
     }
 
-    public int getDanhGia() {
+    int getDanhGia() {
         return danhGia;
     }
 
@@ -57,7 +57,7 @@ public class BinhLuan {
         this.idsb = idsb;
     }
 
-    public String getCmt() {
+    String getCmt() {
         return cmt;
     }
 

@@ -20,7 +20,7 @@ public class Adapter_ListSanBong extends BaseAdapter {
     private int layout;
     private List<SanBong> sanBongList;
 
-    public Adapter_ListSanBong(Context context, int layout, List<SanBong> sanBongList) {
+    Adapter_ListSanBong(Context context, int layout, List<SanBong> sanBongList) {
         this.context = context;
         this.layout = layout;
         this.sanBongList = sanBongList;

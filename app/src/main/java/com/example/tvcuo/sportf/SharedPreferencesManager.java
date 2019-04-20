@@ -14,49 +14,49 @@ public class SharedPreferencesManager {
     private SharedPreferencesManager() {
     }
 
-    public static void init(Context context) {
+    static void init(Context context) {
         if (sPreferences == null) {
             sPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         }
     }
 
-    public static  void setLogin(boolean isLogin){
+    static  void setLogin(boolean isLogin){
         SharedPreferences.Editor editor = sPreferences.edit();
         editor.putBoolean("login", isLogin);
         editor.apply();
     }
 
-    public static boolean isLogin(){
+    static boolean isLogin(){
        return sPreferences.getBoolean("login", false);
     }
 
-    public static void setEmail(String email){
+    static void setEmail(String email){
         SharedPreferences.Editor editor= sPreferences.edit();
         editor.putString("email",email);
         editor.apply();
     }
 
-    public static String getEmail(){
+    static String getEmail(){
         return sPreferences.getString("email","");
     }
 
 
-    public static void setTenFB(String tenFB)
+    static void setTenFB(String tenFB)
     {
         SharedPreferences.Editor editor= sPreferences.edit();
         editor.putString("nameFB",tenFB);
         editor.apply();
     }
-    public static String getTenFB() { return sPreferences.getString("nameFB","");}
+    static String getTenFB() { return sPreferences.getString("nameFB","");}
 
 
-    public static void setFirstTimeSetup(boolean isFirstTime) {
+    static void setFirstTimeSetup(boolean isFirstTime) {
         SharedPreferences.Editor editor = sPreferences.edit();
         editor.putBoolean(PREF_FIRST_TIME_SETUP, isFirstTime);
         editor.apply();
     }
 
-    public static boolean isFirstTimeSetup() {
+    static boolean isFirstTimeSetup() {
         return sPreferences.getBoolean(PREF_FIRST_TIME_SETUP, true);
     }
 
@@ -66,13 +66,13 @@ public class SharedPreferencesManager {
         editor.apply();
     }
 
-    public static void setIdSB_Hinh_Anh(int idSB){
+    static void setIdSB_Hinh_Anh(int idSB){
         SharedPreferences.Editor editor = sPreferences.edit();
         editor.putInt("idsb", idSB);
         editor.apply();
     }
 
-    public static int getIdSB_Hinh_Anh(){
+    static int getIdSB_Hinh_Anh(){
        return sPreferences.getInt("idsb",0);
     }
 

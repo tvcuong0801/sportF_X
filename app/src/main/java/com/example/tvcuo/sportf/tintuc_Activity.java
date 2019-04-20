@@ -37,11 +37,11 @@ ProgressBar progressBar;
             super.onPageStarted(view, url, favicon);
         }
 
-        @Override
-        public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            view.loadUrl(url);
-            return super.shouldOverrideUrlLoading(view, url);
-        }
+//        @Override
+//        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+//            view.loadUrl(url);
+//            return super.shouldOverrideUrlLoading(view, url);
+//        }
 
     }
     @SuppressLint("SetJavaScriptEnabled")

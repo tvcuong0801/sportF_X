@@ -43,7 +43,7 @@ ArrayList<BinhLuan> binhLuanArrayList;
         imageViewChiDuong=findViewById(R.id.imageViewChiDuong);
         btnLienHe=findViewById(R.id.buttonGoi_dt);
         listViewCmt=findViewById(R.id.list_Binh_Luan);
-        binhLuanArrayList= new ArrayList<BinhLuan>();
+        binhLuanArrayList= new ArrayList<>();
         btnDatSan= findViewById(R.id.buttonDatSan);
         SharedPreferencesManager.setIdSB_Hinh_Anh(idSB);
         Cursor cursorCmt= dataBaseSanBong.getDataSql("SELECT * FROM BinhLuan WHERE IdSB = "+ idSB);
@@ -84,6 +84,7 @@ ArrayList<BinhLuan> binhLuanArrayList;
                    cursor.getString(5));
 
         }
+        assert sanBong != null;
         Toast.makeText(this, sanBong.getTen(), Toast.LENGTH_LONG).show();
 
        textViewTen_xs.setText(sanBong.getTen());
@@ -121,7 +122,7 @@ ArrayList<BinhLuan> binhLuanArrayList;
         imageViewChiDuong.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               String labelMap = "Target";
+               //String labelMap = "Target";
                String geouri = "geo:0,0?q=10.848131, 106.786022("+ finalSanBong.getTen()+")";
                Intent mapInt = new Intent(Intent.ACTION_VIEW, Uri.parse(geouri));
                startActivity(mapInt);

@@ -89,7 +89,7 @@ public static ArrayList<SanBong> sanBongArrayList;
 
 
     }
-//1 3 6 8 11 13 16 18 21 23
+    //1 3 6 8 11 13 16 18 21 23
     //2 7 12 17 22
     // 4 9 14 19 24
     // 5 10 15 20 25

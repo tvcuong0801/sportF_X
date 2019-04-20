@@ -3,11 +3,10 @@ package com.example.tvcuo.sportf;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Layout;
+
 import android.view.View;
 import android.widget.Button;
 
-import static com.example.tvcuo.sportf.R.id.constraintLayoutVisa;
 
 public class Thanh_Toan_Activity extends AppCompatActivity {
     Button buttonThanhtoan;
@@ -20,7 +19,7 @@ public class Thanh_Toan_Activity extends AppCompatActivity {
         buttonThanhtoan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=getIntent();
+                //Intent intent=getIntent();
                 donDatTruoc=Dat_San.donDatTruoc;
                 MainActivity.insertDatTruoc(
                         donDatTruoc.getEmail(),

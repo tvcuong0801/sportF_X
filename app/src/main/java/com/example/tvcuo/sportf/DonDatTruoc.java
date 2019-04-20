@@ -1,18 +1,18 @@
 package com.example.tvcuo.sportf;
 
 public class DonDatTruoc {
-    int idDT;
-    String email;
+    private int idDT;
+    private String email;
     int idSB;
-    String loaiSan;
-    String ngay;
-    String gio;
-    String soGio;
+    private String loaiSan;
+    private String ngay;
+    private String gio;
+    private String soGio;
     String ghiChu;
-    int daThanhToan;
-    int tongTien;
+    private int daThanhToan;
+    private int tongTien;
 
-    public DonDatTruoc(int idDT, String email, int idSB, String loaiSan, String ngay, String gio, String soGio, String ghiChu, int daThanhToan, int tongTien) {
+    DonDatTruoc(int idDT, String email, int idSB, String loaiSan, String ngay, String gio, String soGio, String ghiChu, int daThanhToan, int tongTien) {
         this.idDT = idDT;
         this.email = email;
         this.idSB = idSB;
@@ -33,7 +33,7 @@ public class DonDatTruoc {
         this.idDT = idDT;
     }
 
-    public String getEmail() {
+    String getEmail() {
         return email;
     }
 
@@ -49,7 +49,7 @@ public class DonDatTruoc {
         this.idSB = idSB;
     }
 
-    public String getLoaiSan() {
+    String getLoaiSan() {
         return loaiSan;
     }
 
@@ -57,7 +57,7 @@ public class DonDatTruoc {
         this.loaiSan = loaiSan;
     }
 
-    public String getNgay() {
+    String getNgay() {
         return ngay;
     }
 
@@ -65,7 +65,7 @@ public class DonDatTruoc {
         this.ngay = ngay;
     }
 
-    public String getGio() {
+    String getGio() {
         return gio;
     }
 
@@ -73,7 +73,7 @@ public class DonDatTruoc {
         this.gio = gio;
     }
 
-    public String getSoGio() {
+    String getSoGio() {
         return soGio;
     }
 
@@ -81,7 +81,7 @@ public class DonDatTruoc {
         this.soGio = soGio;
     }
 
-    public String getGhiChu() {
+    String getGhiChu() {
         return ghiChu;
     }
 
@@ -89,7 +89,7 @@ public class DonDatTruoc {
         this.ghiChu = ghiChu;
     }
 
-    public int getDaThanhToan() {
+    int getDaThanhToan() {
         return daThanhToan;
     }
 
@@ -97,7 +97,7 @@ public class DonDatTruoc {
         this.daThanhToan = daThanhToan;
     }
 
-    public int getTongTien() {
+    int getTongTien() {
         return tongTien;
     }
 

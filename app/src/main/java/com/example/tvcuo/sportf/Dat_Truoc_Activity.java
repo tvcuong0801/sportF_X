@@ -34,7 +34,7 @@ ArrayList<DonDatTruoc> donDatTruocArrayList;
                     cursor.getInt(9)
             ));
         }
-        int f=donDatTruocArrayList.size();
+
         adapterDatTruoc.notifyDataSetChanged();
 
     }

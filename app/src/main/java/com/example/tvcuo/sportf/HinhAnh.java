@@ -5,7 +5,7 @@ public class HinhAnh {
     private int IdSB;
     private String Url;
 
-    public HinhAnh(int idHA, int idSB, String url) {
+    HinhAnh(int idHA, int idSB, String url) {
         IdHA = idHA;
         IdSB = idSB;
         Url = url;

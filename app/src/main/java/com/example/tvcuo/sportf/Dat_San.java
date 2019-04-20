@@ -1,5 +1,6 @@
 package com.example.tvcuo.sportf;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -97,8 +98,7 @@ public static ArrayList<DonDatTruoc> donDatTruocArrayList;
         }
 
 
-
-
+        assert sanBong != null;
         String url= sanBong.getHinhAnh();
         Picasso.get().load(url).into(imageViewHinhAnh);
 
@@ -149,6 +149,7 @@ public static ArrayList<DonDatTruoc> donDatTruocArrayList;
 
     private void control() {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 chonSan= arrayListLoaiSan.get(position);
@@ -162,11 +163,12 @@ public static ArrayList<DonDatTruoc> donDatTruocArrayList;
         });
 
         editTextSoGio.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
                 checkBoxSoGio.setVisibility(View.VISIBLE);
                 textViewSoGio.setText(editTextSoGio.getText().toString());
-                soGio= (String) editTextSoGio.getText().toString();
+                soGio= editTextSoGio.getText().toString();
                 if(soGio.equals(""))
                 {
                     soGio="1";
@@ -335,7 +337,7 @@ public static ArrayList<DonDatTruoc> donDatTruocArrayList;
 
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                SimpleDateFormat simpleDateFormat= new SimpleDateFormat("HH:mm");
+                @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat= new SimpleDateFormat("HH:mm");
                 calendar.set(0,0,0,hourOfDay,minute);
                 editTextGio.setText(simpleDateFormat.format(calendar.getTime()));
                 textViewgio.setText(simpleDateFormat.format(calendar.getTime()));
@@ -354,7 +356,7 @@ public static ArrayList<DonDatTruoc> donDatTruocArrayList;
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 calendar.set(year,month,dayOfMonth);
-                SimpleDateFormat simpleDateFormat= new SimpleDateFormat("dd/MM/yyyy");
+                @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat= new SimpleDateFormat("dd/MM/yyyy");
                 editTextNgay.setText(simpleDateFormat.format(calendar.getTime()));
                 textViewngay.setText(simpleDateFormat.format(calendar.getTime()));
                 ngayChon= editTextNgay.getText().toString();
