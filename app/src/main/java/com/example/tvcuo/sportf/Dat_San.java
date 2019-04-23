@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -42,12 +43,12 @@ int tongTien=120000;
 ImageView imageViewHinhAnh;
 RadioButton radioButtonTaiCho, radioButtonTrucTuyen;
 CheckBox checkBoxChonSan, checkBoxChonNgay, checkBoxChonGio, checkBoxSoGio;
-EditText editTextNgay, editTextGio, editTextGhiChu, editTextSoGio;
+EditText  editTextGhiChu, editTextSoGio;
 DataBaseSanBong dataBaseSanBong;
 int idSB;
 public static DonDatTruoc donDatTruoc;
 TextView textViewten;
-TextView textViewngay;
+TextView textViewngay,editTextNgay, editTextGio;
 TextView textViewgio;
 TextView textViewtongtien;
 TextView textViewloaiSan;
@@ -161,6 +162,7 @@ public static ArrayList<DonDatTruoc> donDatTruocArrayList;
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+
 
         editTextSoGio.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("SetTextI18n")

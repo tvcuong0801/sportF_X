@@ -57,9 +57,7 @@ ProgressBar progressBar;
             webView.goBack();
             return true;
         }
-        else if(keyCode==KeyEvent.KEYCODE_BACK){
-            startActivity(new Intent(this,MainActivity.class));
-        }
+        
         return super.onKeyDown(keyCode, event);
     }
 }
