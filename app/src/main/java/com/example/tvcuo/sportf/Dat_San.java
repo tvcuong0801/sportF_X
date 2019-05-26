@@ -290,12 +290,15 @@ public static ArrayList<DonDatTruoc> donDatTruocArrayList;
             }
         });
 
-
-
         dialogXoa.setPositiveButton("Có", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+
+
+                //thêm vào databaseDatTruoc
                 MainActivity.insertDatTruoc(email,idSB,chonSan,ngayChon,gioChon,soGio,editTextGhiChu.getText().toString(),0,tongTien);
+
+
                 Intent intent= new Intent(Dat_San.this,Dat_Truoc_Activity.class);
                 startActivity(intent);
                 Toast.makeText(Dat_San.this,"xong",Toast.LENGTH_LONG).show();

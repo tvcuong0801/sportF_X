@@ -26,6 +26,7 @@ public class Adapter_ListSanBong extends BaseAdapter {
         this.sanBongList = sanBongList;
     }
 
+
     @Override
     public int getCount() {
         return sanBongList.size();

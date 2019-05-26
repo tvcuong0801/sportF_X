@@ -42,8 +42,7 @@ public static ArrayList<SanBong> sanBongArrayList;
         dataBaseSanBong.queryData("CREATE TABLE IF NOT EXISTS DonDatTruoc (IdDT INTEGER PRIMARY KEY AUTOINCREMENT, Email NVARCHAR(50), IdSB LONG(2), LoaiSan NVARCHAR(50), Ngay NVARCHAR(20), Gio NVARCHAR(20), SoGio NVARCHAR(2), GhiChu NVARCHAR(250), DaThanhToan INTEGER(2), TongTien INTEGER(2))");
         dataBaseHinhAnh= new DataBaseHinhAnh(this,"hinhanh.sqlite",null,1);
         dataBaseHinhAnh.queryData("CREATE TABLE IF NOT EXISTS HinhAnh(IdHA INTEGER PRIMARY KEY AUTOINCREMENT, IdSB LONG , Url NVARCHAR(300))");
-        //dataBaseSanBong.queryData("UPDATE SanBong SET HinhAnh ='"+"http://asiansports.com.vn/wp-content/uploads/2017/07/IMG_20170619_210927-450x600.jpg"+"' WHERE Ten = '"+"Basket"+"'");
-
+        dataBaseSanBong.queryData("UPDATE SanBong SET HinhAnh ='"+"http://asiansports.com.vn/wp-content/uploads/2017/07/IMG_20170619_210927-450x600.jpg"+"' WHERE Ten = '"+"Basket"+"'");
         checkFirstTime();
         initView();
         control();
@@ -56,7 +55,7 @@ public static ArrayList<SanBong> sanBongArrayList;
         if(SharedPreferencesManager.isFirstTimeSetup()){
             insertDataBaseSanBong();
             insertDataBaseHinhAnh();
-            insertDataDatTruoc();
+            //insertDataDatTruoc();
             insertDataBinhLuan();
             SharedPreferencesManager.setFirstTimeSetup(false);
         }

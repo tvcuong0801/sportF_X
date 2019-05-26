@@ -11,12 +11,12 @@ public class DataBaseSanBong extends SQLiteOpenHelper {
     DataBaseSanBong(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
-
+//không trả về, tạo, cập nhật, thêm sửa xóa
     void queryData(String sqlQuery){
         SQLiteDatabase database= getWritableDatabase();
         database.execSQL(sqlQuery);
     }
-
+// trả về dữ liệu con trỏ, dùng để lấy dữ liệu
     public Cursor getDataSql(String sqlQuery){
         SQLiteDatabase database=getReadableDatabase();
         return database.rawQuery(sqlQuery,null);
