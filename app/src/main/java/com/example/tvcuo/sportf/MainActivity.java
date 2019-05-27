@@ -35,12 +35,12 @@ public static ArrayList<SanBong> sanBongArrayList;
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
         // tạo file
-        dataBaseSanBong= new DataBaseSanBong(this,"sanbong.sqlite",null,1);
+        dataBaseSanBong = new DataBaseSanBong(this,"sanbong.sqlite",null,1);
         //tạo bảng
         dataBaseSanBong.queryData("CREATE TABLE IF NOT EXISTS SanBong(Id INTEGER PRIMARY KEY AUTOINCREMENT, Ten NVARCHAR(250), DiaChi NVARCHAR(250), Loai INTEGER(2), DanhGia DOUBLE(2), HinhAnh NVARCHAR(300))");
         dataBaseSanBong.queryData("CREATE TABLE IF NOT EXISTS BinhLuan(Idbl INTEGER PRIMARY KEY AUTOINCREMENT, IdSB LONG , Cmt NVARCHAR(300), HinhAnh NVARCHAR(500), Ten NVARCHAR (50), DanhGia LONG)");
         dataBaseSanBong.queryData("CREATE TABLE IF NOT EXISTS DonDatTruoc (IdDT INTEGER PRIMARY KEY AUTOINCREMENT, Email NVARCHAR(50), IdSB LONG(2), LoaiSan NVARCHAR(50), Ngay NVARCHAR(20), Gio NVARCHAR(20), SoGio NVARCHAR(2), GhiChu NVARCHAR(250), DaThanhToan INTEGER(2), TongTien INTEGER(2))");
-        dataBaseHinhAnh= new DataBaseHinhAnh(this,"hinhanh.sqlite",null,1);
+        dataBaseHinhAnh = new DataBaseHinhAnh(this,"hinhanh.sqlite",null,1);
         dataBaseHinhAnh.queryData("CREATE TABLE IF NOT EXISTS HinhAnh(IdHA INTEGER PRIMARY KEY AUTOINCREMENT, IdSB LONG , Url NVARCHAR(300))");
         dataBaseSanBong.queryData("UPDATE SanBong SET HinhAnh ='"+"http://asiansports.com.vn/wp-content/uploads/2017/07/IMG_20170619_210927-450x600.jpg"+"' WHERE Ten = '"+"Basket"+"'");
         checkFirstTime();
@@ -49,7 +49,7 @@ public static ArrayList<SanBong> sanBongArrayList;
     }
 
 
-
+    // kiểm tra đã có phải lần đầu tiên hay
     private void checkFirstTime(){
         SharedPreferencesManager.init(this);
         if(SharedPreferencesManager.isFirstTimeSetup()){
@@ -65,16 +65,16 @@ public static ArrayList<SanBong> sanBongArrayList;
     }
 
     private void initView(){
-        btnKhamPha=findViewById(R.id.btnkhampha);
-        btnDatTruoc=findViewById(R.id.btndattruoc);
-        btnTintuc=findViewById(R.id.btntintuc);
-        listView=findViewById(R.id.listSanbong);
-        imageButtonDangNhap=findViewById(R.id.imageButtonDangNhap);
-        sanBongArrayList= new ArrayList<>();
+        btnKhamPha = findViewById(R.id.btnkhampha);
+        btnDatTruoc = findViewById(R.id.btndattruoc);
+        btnTintuc = findViewById(R.id.btntintuc);
+        listView = findViewById(R.id.listSanbong);
+        imageButtonDangNhap = findViewById(R.id.imageButtonDangNhap);
+        sanBongArrayList = new ArrayList<>();
         Adapter_ListSanBong adapter_listSanBong = new Adapter_ListSanBong(this, R.layout.iterm_list_sanbong, sanBongArrayList);
         listView.setAdapter(adapter_listSanBong);
         // lấy data từ dataBase
-        Cursor cursor=dataBaseSanBong.getDataSql("SELECT * FROM SanBong");
+        Cursor cursor = dataBaseSanBong.getDataSql("SELECT * FROM SanBong");
         while (cursor.moveToNext()){
             sanBongArrayList.add(new SanBong(
                     cursor.getInt(0),
@@ -704,15 +704,16 @@ public static ArrayList<SanBong> sanBongArrayList;
         dataBaseSanBong.Insert("Basket","93 Võ Văn Ngân, Linh Trung, Thủ Đức", 4, 2.5,
                 "https://i.ytimg.com/vi/3d9d9WRuPFE/maxresdefault.jpg");
     }
-    private void insertDataDatTruoc() {
-        dataBaseSanBong.InsertDataDatTruoc("nodoann@gmail.com", 1, "Sân 20 người", "17/01/2019", "14:30","1"," ", 1,120000); }
+//    private void insertDataDatTruoc() {
+//        dataBaseSanBong.InsertDataDatTruoc("nodoann@gmail.com", 1, "Sân 20 người", "17/01/2019", "14:30","1"," ", 1,120000); }
 
 
     private void control(){
+
         btnKhamPha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(MainActivity.this, KhamPha_Activity.class);
+                Intent intent = new Intent(MainActivity.this, KhamPha_Activity.class);
                 startActivity(intent);
             }
         });
@@ -722,7 +723,7 @@ public static ArrayList<SanBong> sanBongArrayList;
             public void onClick(View v) {
                 if(!SharedPreferencesManager.isLogin()){
                     Toast.makeText(MainActivity.this,"Bạn phải đăng nhập trước khi đặt sân",Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(MainActivity.this,Dang_nhap.class));
+                    startActivity(new Intent(MainActivity.this, Dang_nhap.class));
                 }
                 else
                 {
@@ -735,16 +736,17 @@ public static ArrayList<SanBong> sanBongArrayList;
         btnTintuc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(MainActivity.this,tintuc_Activity.class);
+                Intent intent = new Intent(MainActivity.this, tintuc_Activity.class);
                 startActivity(intent);
             }
         });
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                SanBong sanBong= sanBongArrayList.get(position);
-                int idSB= sanBong.getIdSB();
-                Intent intent= new Intent(MainActivity.this,XemSan_Activity.class);
+                SanBong sanBong = sanBongArrayList.get(position);
+                int idSB = sanBong.getIdSB();
+                Intent intent = new Intent(MainActivity.this, XemSan_Activity.class);
                 intent.putExtra("id",idSB);
                 startActivity(intent);
             }
@@ -753,7 +755,7 @@ public static ArrayList<SanBong> sanBongArrayList;
         imageButtonDangNhap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,Dang_nhap.class));
+                startActivity(new Intent(MainActivity.this, Dang_nhap.class));
             }
         });
 

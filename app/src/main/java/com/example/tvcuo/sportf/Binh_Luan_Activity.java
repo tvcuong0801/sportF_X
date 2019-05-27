@@ -22,13 +22,13 @@ public class Binh_Luan_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_binh__luan_);
-        listView=findViewById(R.id.listView_BinhLuan_bl);
-        imageButton=findViewById(R.id.imageButtonBinhLuan_bl);
-        editText=findViewById(R.id.editTextBinhLuan_bl);
-        editTextDanhGia=findViewById(R.id.editTextDanhGia_bl);
-        binhLuanArrayList=new ArrayList<>();
-        idSB=SharedPreferencesManager.getIdSB_Hinh_Anh();
-        adapter_binhLuan= new Adapter_BinhLuan(this,R.layout.item_binhluan,binhLuanArrayList);
+        listView = findViewById(R.id.listView_BinhLuan_bl);
+        imageButton = findViewById(R.id.imageButtonBinhLuan_bl);
+        editText = findViewById(R.id.editTextBinhLuan_bl);
+        editTextDanhGia = findViewById(R.id.editTextDanhGia_bl);
+        binhLuanArrayList = new ArrayList<>();
+        idSB = SharedPreferencesManager.getIdSB_Hinh_Anh();
+        adapter_binhLuan = new Adapter_BinhLuan(this,R.layout.item_binhluan,binhLuanArrayList);
         listView.setAdapter(adapter_binhLuan);
         loadCMT();
         imageButton.setOnClickListener(new View.OnClickListener() {

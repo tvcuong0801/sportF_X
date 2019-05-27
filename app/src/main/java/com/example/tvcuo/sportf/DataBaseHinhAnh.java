@@ -23,8 +23,8 @@ public class DataBaseHinhAnh extends SQLiteOpenHelper {
 
     void Insert(int IdSB, String Url){
         SQLiteDatabase database= getWritableDatabase();
-        String sql= "INSERT INTO HinhAnh VALUES(null, ?, ?)";
-        SQLiteStatement statement= database.compileStatement(sql);
+        String sql = "INSERT INTO HinhAnh VALUES(null, ?, ?)";
+        SQLiteStatement statement = database.compileStatement(sql);
         statement.clearBindings();
         statement.bindLong(1,IdSB);
         statement.bindString(2,Url);

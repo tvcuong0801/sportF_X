@@ -18,8 +18,8 @@ ProgressBar progressBar;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tintuc);
-        webView=findViewById(R.id.webViewBongDa);
-        progressBar=findViewById(R.id.progressBar1);
+        webView = findViewById(R.id.webViewBongDa);
+        progressBar = findViewById(R.id.progressBar1);
         progressBar.setVisibility(View.VISIBLE);
         webView.setWebViewClient(new MyWebViewClient());
         goUrl();
@@ -53,7 +53,7 @@ ProgressBar progressBar;
         webView.loadUrl(url);
     }
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if((keyCode==KeyEvent.KEYCODE_BACK) && webView.canGoBack()){
+        if((keyCode == KeyEvent.KEYCODE_BACK) && webView.canGoBack()){
             webView.goBack();
             return true;
         }

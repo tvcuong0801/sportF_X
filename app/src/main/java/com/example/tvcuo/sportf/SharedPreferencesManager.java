@@ -31,7 +31,7 @@ public class SharedPreferencesManager {
     }
 
     static void setEmail(String email){
-        SharedPreferences.Editor editor= sPreferences.edit();
+        SharedPreferences.Editor editor = sPreferences.edit();
         editor.putString("email",email);
         editor.apply();
     }
@@ -43,7 +43,7 @@ public class SharedPreferencesManager {
 
     static void setTenFB(String tenFB)
     {
-        SharedPreferences.Editor editor= sPreferences.edit();
+        SharedPreferences.Editor editor = sPreferences.edit();
         editor.putString("nameFB",tenFB);
         editor.apply();
     }

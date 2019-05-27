@@ -32,23 +32,23 @@ ArrayList<BinhLuan> binhLuanArrayList;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_xem_san);
-        final Intent intent= getIntent();
-        idSB= intent.getIntExtra("id",0);
+        final Intent intent = getIntent();
+        idSB = intent.getIntExtra("id",0);
 
-        dataBaseSanBong= MainActivity.dataBaseSanBong;
-        textViewDiaChi_xs=findViewById(R.id.textView_xs_DiaChi);
-        textViewTen_xs=findViewById(R.id.textView_xs_Ten);
-        textViewLoai_xs=findViewById(R.id.textView_xs_Loai);
-        imageViewHinhAnh=findViewById(R.id.imageView_DatSan_HinhAnh);
-        imageViewChiDuong=findViewById(R.id.imageViewChiDuong);
-        btnLienHe=findViewById(R.id.buttonGoi_dt);
-        listViewCmt=findViewById(R.id.list_Binh_Luan);
+        dataBaseSanBong = MainActivity.dataBaseSanBong;
+        textViewDiaChi_xs = findViewById(R.id.textView_xs_DiaChi);
+        textViewTen_xs = findViewById(R.id.textView_xs_Ten);
+        textViewLoai_xs = findViewById(R.id.textView_xs_Loai);
+        imageViewHinhAnh = findViewById(R.id.imageView_DatSan_HinhAnh);
+        imageViewChiDuong = findViewById(R.id.imageViewChiDuong);
+        btnLienHe = findViewById(R.id.buttonGoi_dt);
+        listViewCmt = findViewById(R.id.list_Binh_Luan);
 
-        binhLuanArrayList= new ArrayList<>();
-        btnDatSan= findViewById(R.id.buttonDatSan);
+        binhLuanArrayList = new ArrayList<>();
+        btnDatSan = findViewById(R.id.buttonDatSan);
         SharedPreferencesManager.setIdSB_Hinh_Anh(idSB);
-        Cursor cursorCmt= dataBaseSanBong.getDataSql("SELECT * FROM BinhLuan WHERE IdSB = "+ idSB);
-        Adapter_BinhLuan adapter_binhLuan= new Adapter_BinhLuan(this, R.layout.item_binhluan, binhLuanArrayList);
+        Cursor cursorCmt = dataBaseSanBong.getDataSql("SELECT * FROM BinhLuan WHERE IdSB = "+ idSB);
+        Adapter_BinhLuan adapter_binhLuan = new Adapter_BinhLuan(this, R.layout.item_binhluan, binhLuanArrayList);
         listViewCmt.setAdapter(adapter_binhLuan);
 
         while (cursorCmt.moveToNext()){
@@ -65,7 +65,7 @@ ArrayList<BinhLuan> binhLuanArrayList;
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(!SharedPreferencesManager.isLogin()){
-                    Toast.makeText(XemSan_Activity.this,"Bạn phải đăng nhập trước khi đặt sân",Toast.LENGTH_LONG).show();
+                    Toast.makeText(XemSan_Activity.this,"Bạn phải đăng nhập trước khi bình luận",Toast.LENGTH_LONG).show();
                     startActivity(new Intent(XemSan_Activity.this,Dang_nhap.class));
                 }
                 else
@@ -76,7 +76,7 @@ ArrayList<BinhLuan> binhLuanArrayList;
             }
         });
 
-        Cursor cursor= dataBaseSanBong.getDataSql("SELECT * FROM SanBong WHERE Id = "+idSB);
+        Cursor cursor = dataBaseSanBong.getDataSql("SELECT * FROM SanBong WHERE Id = "+idSB);
         SanBong sanBong = null;
         while (cursor.moveToNext()) {
            sanBong = new SanBong(
@@ -94,32 +94,32 @@ ArrayList<BinhLuan> binhLuanArrayList;
        textViewTen_xs.setText(sanBong.getTen());
        textViewDiaChi_xs.setText(sanBong.getDiaChi());
 
-        String strLoai="";
+        String strLoai = "";
         switch (sanBong.getLoai()){
             case 1:
             {
-                strLoai= "Sân bóng đá, sân cỏ nhân tạo";
+                strLoai = "Sân bóng đá, sân cỏ nhân tạo";
                 break;
             }
             case 2:
             {
-                strLoai= "Sân tenis";
+                strLoai = "Sân tenis";
                 break;
             }
             case 3:
             {
-                strLoai= "Sân bóng chuyền";
+                strLoai = "Sân bóng chuyền";
                 break;
             }
             case 4:
             {
-                strLoai= "Sân bóng rổ";
+                strLoai = "Sân bóng rổ";
                 break;
             }
         }
 
        textViewLoai_xs.setText(strLoai);
-       String url= sanBong.getHinhAnh();
+       String url = sanBong.getHinhAnh();
        Picasso.get().load(url).into(imageViewHinhAnh);
 
         final SanBong finalSanBong = sanBong;
@@ -146,7 +146,7 @@ ArrayList<BinhLuan> binhLuanArrayList;
         imageViewHinhAnh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1= new Intent(XemSan_Activity.this,Xem_Hinh_Activity.class);
+                Intent intent1 = new Intent(XemSan_Activity.this,Xem_Hinh_Activity.class);
                 SharedPreferencesManager.init(XemSan_Activity.this);
                 SharedPreferencesManager.setIdSB_Hinh_Anh(idSB);
                 startActivity(intent1);
@@ -158,12 +158,12 @@ ArrayList<BinhLuan> binhLuanArrayList;
             public void onClick(View v) {
                 if(!SharedPreferencesManager.isLogin()){
                     Toast.makeText(XemSan_Activity.this,"Bạn phải đăng nhập trước khi đặt sân",Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(XemSan_Activity.this,Dang_nhap.class));
+                    startActivity(new Intent(XemSan_Activity.this, Dang_nhap.class));
                 }
                 else
                 {
                     SharedPreferencesManager.setIdSB_Hinh_Anh(idSB);
-                    startActivity(new Intent(XemSan_Activity.this,Dat_San.class));
+                    startActivity(new Intent(XemSan_Activity.this, Dat_San.class));
                 }
 
 

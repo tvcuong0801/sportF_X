@@ -15,9 +15,9 @@ ArrayList<DonDatTruoc> donDatTruocArrayList;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dat__truoc);
-        listView=findViewById(R.id.list_Dat_truoc);
-        donDatTruocArrayList=new ArrayList<>();
-        adapterDatTruoc= new Adapter_DatTruoc(this,R.layout.item_dattruoc,donDatTruocArrayList);
+        listView = findViewById(R.id.list_Dat_truoc);
+        donDatTruocArrayList = new ArrayList<>();
+        adapterDatTruoc = new Adapter_DatTruoc(this,R.layout.item_dattruoc,donDatTruocArrayList);
         listView.setAdapter(adapterDatTruoc);
         Cursor cursor=MainActivity.dataBaseSanBong.getDataSql("SELECT * FROM DonDatTruoc WHERE Email = '"+ SharedPreferencesManager.getEmail() +"'");
         while (cursor.moveToNext()){
@@ -34,7 +34,6 @@ ArrayList<DonDatTruoc> donDatTruocArrayList;
                     cursor.getInt(9)
             ));
         }
-
         adapterDatTruoc.notifyDataSetChanged();
 
     }

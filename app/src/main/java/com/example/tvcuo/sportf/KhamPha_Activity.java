@@ -20,12 +20,13 @@ Adapter_ListSanBong adapter_listSanBong;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kham_pha);
-        listView= findViewById(R.id.list_KhamPha);
-        dataBaseSanBong=MainActivity.dataBaseSanBong;
-        sanBongArrayList=new ArrayList<>();
-        adapter_listSanBong= new Adapter_ListSanBong(KhamPha_Activity.this, R.layout.iterm_list_sanbong,sanBongArrayList);
+        listView = findViewById(R.id.list_KhamPha);
+        dataBaseSanBong = MainActivity.dataBaseSanBong;
+        sanBongArrayList = new ArrayList<>();
+
+        adapter_listSanBong = new Adapter_ListSanBong(KhamPha_Activity.this, R.layout.iterm_list_sanbong,sanBongArrayList);
         listView.setAdapter(adapter_listSanBong);
-        Cursor cursor=dataBaseSanBong.getDataSql("SELECT * FROM SanBong");
+        Cursor cursor = dataBaseSanBong.getDataSql("SELECT * FROM SanBong");
         while (cursor.moveToNext()){
             sanBongArrayList.add(new SanBong(
                     cursor.getInt(0),
@@ -37,13 +38,14 @@ Adapter_ListSanBong adapter_listSanBong;
             ));
 
         }
+
         adapter_listSanBong.notifyDataSetChanged();
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                SanBong sanBong= sanBongArrayList.get(position);
-                int idSB= sanBong.getIdSB();
-                Intent intent= new Intent(KhamPha_Activity.this,XemSan_Activity.class);
+                SanBong sanBong = sanBongArrayList.get(position);
+                int idSB = sanBong.getIdSB();
+                Intent intent = new Intent(KhamPha_Activity.this,XemSan_Activity.class);
                 intent.putExtra("id",idSB);
                 startActivity(intent);
             }

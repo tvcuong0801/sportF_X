@@ -39,7 +39,7 @@ String email;
 String ngayChon;
 String gioChon;
 String soGio;
-int tongTien=120000;
+int tongTien = 120000;
 ImageView imageViewHinhAnh;
 RadioButton radioButtonTaiCho, radioButtonTrucTuyen;
 CheckBox checkBoxChonSan, checkBoxChonNgay, checkBoxChonGio, checkBoxSoGio;
@@ -65,10 +65,10 @@ public static ArrayList<DonDatTruoc> donDatTruocArrayList;
         innitView();
         donDatTruocArrayList= new ArrayList<>();
 
-        email=SharedPreferencesManager.getEmail();
-        idSB= SharedPreferencesManager.getIdSB_Hinh_Anh();
+        email =SharedPreferencesManager.getEmail();
+        idSB = SharedPreferencesManager.getIdSB_Hinh_Anh();
 
-        Cursor cursor= dataBaseSanBong.getDataSql("SELECT * FROM SanBong WHERE Id = "+idSB);
+        Cursor cursor = dataBaseSanBong.getDataSql("SELECT * FROM SanBong WHERE Id = "+idSB);
         SanBong sanBong = null;
         while (cursor.moveToNext()) {
             sanBong = new SanBong(
@@ -100,12 +100,12 @@ public static ArrayList<DonDatTruoc> donDatTruocArrayList;
 
 
         assert sanBong != null;
-        String url= sanBong.getHinhAnh();
+        String url = sanBong.getHinhAnh();
         Picasso.get().load(url).into(imageViewHinhAnh);
 
         textViewten.setText(sanBong.getTen());
 
-        arrayListLoaiSan= new ArrayList<>();
+        arrayListLoaiSan = new ArrayList<>();
 
         switch (sanBong.getLoai()){
             case 1:
@@ -136,7 +136,7 @@ public static ArrayList<DonDatTruoc> donDatTruocArrayList;
             }
         }
 
-        final ArrayAdapter<String> adapter= new ArrayAdapter<>(Dat_San.this,
+        final ArrayAdapter<String> adapter = new ArrayAdapter<>(Dat_San.this,
                 R.layout.support_simple_spinner_dropdown_item,
                 arrayListLoaiSan);
         adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
@@ -170,10 +170,10 @@ public static ArrayList<DonDatTruoc> donDatTruocArrayList;
             public void onClick(View v) {
                 checkBoxSoGio.setVisibility(View.VISIBLE);
                 textViewSoGio.setText(editTextSoGio.getText().toString());
-                soGio= editTextSoGio.getText().toString();
+                soGio = editTextSoGio.getText().toString();
                 if(soGio.equals(""))
                 {
-                    soGio="1";
+                    soGio ="1";
                 }
                 else textViewtongtien.setText(Integer.toString(tongTien*Integer.parseInt(soGio)));
                 if (textViewtongtien.getText().toString().equals("Tổng tiền"))
@@ -188,7 +188,7 @@ public static ArrayList<DonDatTruoc> donDatTruocArrayList;
         imageViewHinhAnh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1= new Intent(Dat_San.this,Xem_Hinh_Activity.class);
+                Intent intent1 = new Intent(Dat_San.this,Xem_Hinh_Activity.class);
                 SharedPreferencesManager.init(Dat_San.this);
                 SharedPreferencesManager.setIdSB_Hinh_Anh(idSB);
                 startActivity(intent1);
@@ -217,20 +217,15 @@ public static ArrayList<DonDatTruoc> donDatTruocArrayList;
         buttonXacNhan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(textViewSoGio.getText().toString().equals("Số giờ")||textViewngay.getText().toString().equals("Ngày")||textViewgio.getText().toString().equals("Giờ"))
-                {
+                if(textViewSoGio.getText().toString().equals("Số giờ")||textViewngay.getText().toString().equals("Ngày")||textViewgio.getText().toString().equals("Giờ")) {
                     dialogBaoTrung();
                 }
 
-                if(radioButtonTrucTuyen.isChecked())
-                {
-                    startActivity(new Intent(Dat_San.this,Thanh_Toan_Activity.class));
-                    donDatTruoc= new DonDatTruoc(donDatTruocArrayList.size()+1,email,idSB,chonSan,ngayChon,gioChon,soGio,editTextGhiChu.getText().toString(),1,tongTien);
+                if(radioButtonTrucTuyen.isChecked()) {
+                    startActivity(new Intent(Dat_San.this, Thanh_Toan_Activity.class));
+                    donDatTruoc = new DonDatTruoc(donDatTruocArrayList.size()+1, email, idSB, chonSan, ngayChon, gioChon, soGio, editTextGhiChu.getText().toString(),1,tongTien);
                 }
-                else if(radioButtonTaiCho.isChecked())
-                {
-
-
+                else if(radioButtonTaiCho.isChecked()) {
                     dialogXacNhanTraTaiCho();
                 }
 
@@ -243,8 +238,7 @@ public static ArrayList<DonDatTruoc> donDatTruocArrayList;
         radioButtonTaiCho.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(radioButtonTrucTuyen.isChecked()&&radioButtonTaiCho.isChecked())
-                {
+                if(radioButtonTrucTuyen.isChecked() && radioButtonTaiCho.isChecked()) {
                     radioButtonTrucTuyen.setChecked(false);
                 }
             }
@@ -252,8 +246,7 @@ public static ArrayList<DonDatTruoc> donDatTruocArrayList;
         radioButtonTrucTuyen.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(radioButtonTaiCho.isChecked()&&radioButtonTrucTuyen.isChecked())
-                {
+                if(radioButtonTaiCho.isChecked() && radioButtonTrucTuyen.isChecked()) {
                     radioButtonTaiCho.setChecked(false);
                 }
             }
@@ -286,20 +279,16 @@ public static ArrayList<DonDatTruoc> donDatTruocArrayList;
         dialogXoa.setNegativeButton("Không", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                startActivity(new Intent(Dat_San.this,MainActivity.class));
+                startActivity(new Intent(Dat_San.this, MainActivity.class));
             }
         });
 
         dialogXoa.setPositiveButton("Có", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
-
                 //thêm vào databaseDatTruoc
                 MainActivity.insertDatTruoc(email,idSB,chonSan,ngayChon,gioChon,soGio,editTextGhiChu.getText().toString(),0,tongTien);
-
-
-                Intent intent= new Intent(Dat_San.this,Dat_Truoc_Activity.class);
+                Intent intent = new Intent(Dat_San.this, Dat_Truoc_Activity.class);
                 startActivity(intent);
                 Toast.makeText(Dat_San.this,"xong",Toast.LENGTH_LONG).show();
             }
@@ -308,26 +297,27 @@ public static ArrayList<DonDatTruoc> donDatTruocArrayList;
     }
 
     private void innitView() {
-        spinner=findViewById(R.id.spinner1);
-        editTextNgay=findViewById(R.id.editTextNgay);
-        editTextGio=findViewById(R.id.editTextGio);
-        checkBoxChonSan=findViewById(R.id.checkBoxChonSan);
-        checkBoxChonNgay=findViewById(R.id.checkBoxChonNgay);
-        checkBoxChonGio=findViewById(R.id.checkBoxChonGio);
-        radioButtonTaiCho=findViewById(R.id.radioButtonTaiCho);
-        radioButtonTrucTuyen=findViewById(R.id.radioButtonTrucTuyen);
-        editTextGhiChu=findViewById(R.id.editTextGhiChu);
-        dataBaseSanBong=MainActivity.dataBaseSanBong;
-        textViewten=findViewById(R.id.textView_Ten_DatSan);
-        textViewngay=findViewById(R.id.textViewNgay_datsan);
-        textViewgio=findViewById(R.id.textViewGio_datsan);
-        textViewtongtien=findViewById(R.id.textViewTongTien_DatSan);
-        textViewloaiSan=findViewById(R.id.textView_Loaisan_datsan);
-        imageViewHinhAnh=findViewById(R.id.imageView_DatSan_HinhAnh);
-        checkBoxSoGio=findViewById(R.id.checkBoxSogio);
-        editTextSoGio=findViewById(R.id.editTextSoGio);
-        textViewSoGio=findViewById(R.id.textViewSoGio_dt);
-        buttonXacNhan=findViewById(R.id.buttonXacNhan);
+        spinner = findViewById(R.id.spinner1);
+        editTextNgay = findViewById(R.id.editTextNgay);
+        editTextGio = findViewById(R.id.editTextGio);
+        checkBoxChonSan = findViewById(R.id.checkBoxChonSan);
+        checkBoxChonNgay = findViewById(R.id.checkBoxChonNgay);
+        checkBoxChonGio = findViewById(R.id.checkBoxChonGio);
+        radioButtonTaiCho = findViewById(R.id.radioButtonTaiCho);
+        radioButtonTrucTuyen = findViewById(R.id.radioButtonTrucTuyen);
+        editTextGhiChu = findViewById(R.id.editTextGhiChu);
+        dataBaseSanBong = MainActivity.dataBaseSanBong;
+        textViewten = findViewById(R.id.textView_Ten_DatSan);
+        textViewngay = findViewById(R.id.textViewNgay_datsan);
+        textViewgio = findViewById(R.id.textViewGio_datsan);
+        textViewtongtien = findViewById(R.id.textViewTongTien_DatSan);
+        textViewloaiSan = findViewById(R.id.textView_Loaisan_datsan);
+        imageViewHinhAnh = findViewById(R.id.imageView_DatSan_HinhAnh);
+        checkBoxSoGio = findViewById(R.id.checkBoxSogio);
+        editTextSoGio = findViewById(R.id.editTextSoGio);
+        textViewSoGio = findViewById(R.id.textViewSoGio_dt);
+        buttonXacNhan = findViewById(R.id.buttonXacNhan);
+
         checkBoxChonNgay.setVisibility(View.INVISIBLE);
         checkBoxChonGio.setVisibility(View.INVISIBLE);
         checkBoxChonSan.setVisibility(View.INVISIBLE);
@@ -335,28 +325,28 @@ public static ArrayList<DonDatTruoc> donDatTruocArrayList;
     }
 
     private void chonGio() {
-        final Calendar calendar=Calendar.getInstance();
-        int gio= calendar.get(Calendar.HOUR_OF_DAY);
-        int phut=calendar.get(Calendar.MINUTE);
-        TimePickerDialog timePickerDialog= new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
+        final Calendar calendar = Calendar.getInstance();
+        int gio = calendar.get(Calendar.HOUR_OF_DAY);
+        int phut = calendar.get(Calendar.MINUTE);
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
 
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat= new SimpleDateFormat("HH:mm");
+                @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
                 calendar.set(0,0,0,hourOfDay,minute);
                 editTextGio.setText(simpleDateFormat.format(calendar.getTime()));
                 textViewgio.setText(simpleDateFormat.format(calendar.getTime()));
-                gioChon= editTextGio.getText().toString();
+                gioChon = editTextGio.getText().toString();
             }
         },gio,phut,true);
         timePickerDialog.show();
     }
 
     private void chonNgay(){
-        final Calendar calendar=Calendar.getInstance();
-        int Ngay=calendar.get(Calendar.DATE);
-        int Thang=calendar.get(Calendar.MONTH);
-        int Nam=calendar.get(Calendar.YEAR);
+        final Calendar calendar = Calendar.getInstance();
+        int Ngay = calendar.get(Calendar.DATE);
+        int Thang = calendar.get(Calendar.MONTH);
+        int Nam = calendar.get(Calendar.YEAR);
         DatePickerDialog datePickerDialog= new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -366,7 +356,7 @@ public static ArrayList<DonDatTruoc> donDatTruocArrayList;
                 textViewngay.setText(simpleDateFormat.format(calendar.getTime()));
                 ngayChon= editTextNgay.getText().toString();
             }
-        },Nam,Thang,Ngay);
+        }, Nam, Thang, Ngay);
         datePickerDialog.show();
     }
 }

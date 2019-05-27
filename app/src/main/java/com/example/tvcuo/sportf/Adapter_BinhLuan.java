@@ -47,23 +47,23 @@ public class Adapter_BinhLuan extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         Adapter_BinhLuan.ViewHolder holder;
-        if(convertView==null){
-            holder= new Adapter_BinhLuan.ViewHolder();
-            LayoutInflater inflater= (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView=inflater.inflate(layout,null);
-            holder.textViewTenCmt=convertView.findViewById(R.id.textViewTen_Cmt);
-            holder.textViewDanhGiaCmt=convertView.findViewById(R.id.textView_danhgia_cmt);
-            holder.textViewCmt=convertView.findViewById(R.id.textViewCmt);
-            holder.hinhAnh=convertView.findViewById(R.id.imageViewHinhAnh_cmt);
+        if(convertView == null){
+            holder = new Adapter_BinhLuan.ViewHolder();
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = inflater.inflate(layout,null);
+            holder.textViewTenCmt = convertView.findViewById(R.id.textViewTen_Cmt);
+            holder.textViewDanhGiaCmt = convertView.findViewById(R.id.textView_danhgia_cmt);
+            holder.textViewCmt = convertView.findViewById(R.id.textViewCmt);
+            holder.hinhAnh = convertView.findViewById(R.id.imageViewHinhAnh_cmt);
             convertView.setTag(holder);
         }else {
-            holder= (Adapter_BinhLuan.ViewHolder) convertView.getTag();
+            holder = (Adapter_BinhLuan.ViewHolder) convertView.getTag();
         }
         BinhLuan binhLuan= listBinhLuan.get(position);
         holder.textViewTenCmt.setText(binhLuan.getTen());
         holder.textViewCmt.setText(binhLuan.getCmt());
         holder.textViewDanhGiaCmt.setText(Integer.toString(binhLuan.getDanhGia())+" sao");
-        String url= binhLuan.getHinhAnh();
+        String url = binhLuan.getHinhAnh();
         Picasso.get()
                 .load(url)
                 .resize(100, 100)

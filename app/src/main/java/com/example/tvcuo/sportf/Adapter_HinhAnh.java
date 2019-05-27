@@ -42,25 +42,23 @@ public class Adapter_HinhAnh extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         Adapter_HinhAnh.ViewHolder holder;
-        if(convertView==null){
-            holder= new Adapter_HinhAnh.ViewHolder();
-            LayoutInflater inflater= (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView=inflater.inflate(layout,null);
-            holder.hinhAnh=convertView.findViewById(R.id.imageView_item_hinhanh);
+        if(convertView == null){
+            holder = new Adapter_HinhAnh.ViewHolder();
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = inflater.inflate(layout,null);
+            holder.hinhAnh = convertView.findViewById(R.id.imageView_item_hinhanh);
             convertView.setTag(holder);
-        }else {
-            holder= (Adapter_HinhAnh.ViewHolder) convertView.getTag();
+        } else {
+            holder = (Adapter_HinhAnh.ViewHolder) convertView.getTag();
         }
-        HinhAnh hinhAnh= hinhAnhList.get(position);
+        HinhAnh hinhAnh = hinhAnhList.get(position);
 
-
-        String url= hinhAnh.getUrl();
+        String url = hinhAnh.getUrl();
         Picasso.get()
                 .load(url)
                 .resize(150, 150)
                 .centerCrop()
                 .into(holder.hinhAnh);
-
         return convertView;
     }
 }

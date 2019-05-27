@@ -24,9 +24,9 @@ ArrayList<HinhAnh> hinhAnhArrayList;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_xem__hinh);
-        dataBaseHinhAnh= MainActivity.dataBaseHinhAnh;
-        gridView=findViewById(R.id.gridViewHinhAnh);
-        hinhAnhArrayList= new ArrayList<>();
+        dataBaseHinhAnh = MainActivity.dataBaseHinhAnh;
+        gridView = findViewById(R.id.gridViewHinhAnh);
+        hinhAnhArrayList = new ArrayList<>();
 
         idSB=SharedPreferencesManager.getIdSB_Hinh_Anh();
 
@@ -34,7 +34,7 @@ ArrayList<HinhAnh> hinhAnhArrayList;
         Adapter_HinhAnh adapter = new Adapter_HinhAnh(this, R.layout.item_hinh_anh, hinhAnhArrayList);
         gridView.setAdapter(adapter);
        // lấy data từ dataBase
-        Cursor cursor=dataBaseHinhAnh.getDataSql("SELECT * FROM HinhAnh WHERE IdSB="+idSB);
+        Cursor cursor = dataBaseHinhAnh.getDataSql("SELECT * FROM HinhAnh WHERE IdSB="+idSB);
 
         while (cursor.moveToNext()){
             hinhAnhArrayList.add(new HinhAnh(
@@ -49,12 +49,12 @@ ArrayList<HinhAnh> hinhAnhArrayList;
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Dialog dialogSua= new Dialog(Xem_Hinh_Activity.this);
+                Dialog dialogSua = new Dialog(Xem_Hinh_Activity.this);
                 dialogSua.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialogSua.setContentView(R.layout.dialog_xem_anh);
-                ImageView imageView= dialogSua.findViewById(R.id.imageViewdialog);
-                HinhAnh hinhAnh= hinhAnhArrayList.get(position);
-                String url= hinhAnh.getUrl();
+                ImageView imageView = dialogSua.findViewById(R.id.imageViewdialog);
+                HinhAnh hinhAnh = hinhAnhArrayList.get(position);
+                String url = hinhAnh.getUrl();
                 Picasso.get()
                         .load(url)
                         .into(imageView);

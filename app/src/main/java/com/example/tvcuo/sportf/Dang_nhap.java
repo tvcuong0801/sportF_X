@@ -42,16 +42,15 @@ String email, name, firstname;
         super.onCreate(savedInstanceState);
         callbackManager=CallbackManager.Factory.create();
         setContentView(R.layout.activity_dang_nhap);
-        imageProfile=findViewById(R.id.friendProfilePicture);
-        buttonLogin=findViewById(R.id.login_button);
-        buttonLogout=findViewById(R.id.logout_button);
-        textNameProfile=findViewById(R.id.textView_ten_user);
+        imageProfile = findViewById(R.id.friendProfilePicture);
+        buttonLogin = findViewById(R.id.login_button);
+        buttonLogout = findViewById(R.id.logout_button);
+        textNameProfile = findViewById(R.id.textView_ten_user);
         buttonLogout.setVisibility(View.INVISIBLE);
         textNameProfile.setText("");
         buttonLogin.setReadPermissions(Arrays.asList("public_profile","email"));
         setLogin_button();
         setLogout_button();
-
     }
 
     private void setLogout_button() {
@@ -60,10 +59,10 @@ String email, name, firstname;
             public void onClick(View v) {
                 LoginManager.getInstance().logOut();
                 buttonLogout.setVisibility(View.INVISIBLE);
-                textNameProfile.setText("");
+                textNameProfile.setText( "" );
                 imageProfile.setProfileId(null);
-                SharedPreferencesManager.setEmail("");
-                SharedPreferencesManager.setTenFB("");
+                SharedPreferencesManager.setEmail( "" );
+                SharedPreferencesManager.setTenFB( "" );
                 buttonLogin.setVisibility(View.VISIBLE);
                 SharedPreferencesManager.setLogin(false);
             }
@@ -120,7 +119,7 @@ String email, name, firstname;
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        callbackManager.onActivityResult(requestCode,resultCode,data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
 
