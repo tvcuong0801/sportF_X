@@ -46,7 +46,7 @@ CheckBox checkBoxChonSan, checkBoxChonNgay, checkBoxChonGio, checkBoxSoGio;
 EditText  editTextGhiChu, editTextSoGio;
 DataBaseSanBong dataBaseSanBong;
 int idSB;
-public static DonDatTruoc donDatTruoc;
+public static DonDatTruoc donDatTruoc, dondadat;
 TextView textViewten;
 TextView textViewngay,editTextNgay, editTextGio;
 TextView textViewgio;
@@ -218,16 +218,73 @@ public static ArrayList<DonDatTruoc> donDatTruocArrayList;
             @Override
             public void onClick(View v) {
                 if(textViewSoGio.getText().toString().equals("Số giờ")||textViewngay.getText().toString().equals("Ngày")||textViewgio.getText().toString().equals("Giờ")) {
-                    dialogBaoTrung();
+
+                    dialogBaoTrung1();
+                } else {
+                    if(radioButtonTrucTuyen.isChecked()) {
+                        ArrayList<DonDatTruoc> donDatTruocArrayList1;
+                        donDatTruocArrayList1= new ArrayList<>();
+                        Cursor cursor1= dataBaseSanBong.getDataSql("SELECT * FROM DonDatTruoc");
+                        while (cursor1.moveToNext()) {
+                            donDatTruocArrayList1.add(new DonDatTruoc(
+                                    cursor1.getInt(0),
+                                    cursor1.getString(1),
+                                    cursor1.getInt(2),
+                                    cursor1.getString(3),
+                                    cursor1.getString(4),
+                                    cursor1.getString(5),
+                                    cursor1.getString(6),
+                                    cursor1.getString(7),
+                                    cursor1.getInt(8),
+                                    cursor1.getInt(9)
+                            ));
+                        }
+                        for (int i = 0; i < donDatTruocArrayList1.size(); i++  ) {
+                            if(donDatTruocArrayList1.get(i).getGio().equals(textViewgio.getText().toString())
+                                    && donDatTruocArrayList1.get(i).getNgay().equals(textViewngay.getText().toString())
+                                    && donDatTruocArrayList1.get(i).getIdSB() == idSB ){
+                                Toast.makeText(Dat_San.this,"Đã trùng ",Toast.LENGTH_LONG).show();
+                                dialogBaoTrung();
+                                return;
+                            }
+                        }
+                        startActivity(new Intent(Dat_San.this, Thanh_Toan_Activity.class));
+                        donDatTruoc = new DonDatTruoc(donDatTruocArrayList.size()+1, email, idSB, chonSan, ngayChon, gioChon, soGio, editTextGhiChu.getText().toString(),1,tongTien);
+
+
+                    }
+                    else if(radioButtonTaiCho.isChecked()) {
+
+                        ArrayList<DonDatTruoc> donDatTruocArrayList1;
+                        donDatTruocArrayList1= new ArrayList<>();
+                        Cursor cursor1= dataBaseSanBong.getDataSql("SELECT * FROM DonDatTruoc");
+                        while (cursor1.moveToNext()) {
+                            donDatTruocArrayList1.add(new DonDatTruoc(
+                                    cursor1.getInt(0),
+                                    cursor1.getString(1),
+                                    cursor1.getInt(2),
+                                    cursor1.getString(3),
+                                    cursor1.getString(4),
+                                    cursor1.getString(5),
+                                    cursor1.getString(6),
+                                    cursor1.getString(7),
+                                    cursor1.getInt(8),
+                                    cursor1.getInt(9)
+                            ));
+                        }
+                        for (int i = 0; i < donDatTruocArrayList1.size(); i++  ) {
+                            if(donDatTruocArrayList1.get(i).getGio().equals(textViewgio.getText().toString())
+                                    && donDatTruocArrayList1.get(i).getNgay().equals(textViewngay.getText().toString())
+                                    && donDatTruocArrayList1.get(i).getIdSB() == idSB ){
+                                Toast.makeText(Dat_San.this,"Đã trùng ",Toast.LENGTH_LONG).show();
+                                dialogBaoTrung();
+                                return;
+                            }
+                        }
+                        dialogXacNhanTraTaiCho();
+                    }
                 }
 
-                if(radioButtonTrucTuyen.isChecked()) {
-                    startActivity(new Intent(Dat_San.this, Thanh_Toan_Activity.class));
-                    donDatTruoc = new DonDatTruoc(donDatTruocArrayList.size()+1, email, idSB, chonSan, ngayChon, gioChon, soGio, editTextGhiChu.getText().toString(),1,tongTien);
-                }
-                else if(radioButtonTaiCho.isChecked()) {
-                    dialogXacNhanTraTaiCho();
-                }
 
 
 
@@ -255,7 +312,27 @@ public static ArrayList<DonDatTruoc> donDatTruocArrayList;
 
     public void dialogBaoTrung(){
         final AlertDialog.Builder dialogXoa= new AlertDialog.Builder(this);
-        dialogXoa.setMessage("Bạn phải điền đủ thông tin, xin mời đặt lại!");
+        dialogXoa.setMessage("Sân đặt trùng , xin mời đặt lại!");
+        dialogXoa.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                startActivity(new Intent(Dat_San.this,MainActivity.class));
+            }
+        });
+        dialogXoa.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent= new Intent(Dat_San.this,XemSan_Activity.class);
+                intent.putExtra("id",idSB);
+                startActivity(intent);
+            }
+        });
+        dialogXoa.show();
+    }
+
+    public void dialogBaoTrung1(){
+        final AlertDialog.Builder dialogXoa= new AlertDialog.Builder(this);
+        dialogXoa.setMessage("Bạn chưa điền đủ thông tin , xin mời đặt lại!");
         dialogXoa.setNegativeButton("Không", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -286,7 +363,7 @@ public static ArrayList<DonDatTruoc> donDatTruocArrayList;
         dialogXoa.setPositiveButton("Có", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                //thêm vào databaseDatTruoc
+
                 MainActivity.insertDatTruoc(email,idSB,chonSan,ngayChon,gioChon,soGio,editTextGhiChu.getText().toString(),0,tongTien);
                 Intent intent = new Intent(Dat_San.this, Dat_Truoc_Activity.class);
                 startActivity(intent);
@@ -325,6 +402,9 @@ public static ArrayList<DonDatTruoc> donDatTruocArrayList;
     }
 
     private void chonGio() {
+
+
+
         final Calendar calendar = Calendar.getInstance();
         int gio = calendar.get(Calendar.HOUR_OF_DAY);
         int phut = calendar.get(Calendar.MINUTE);

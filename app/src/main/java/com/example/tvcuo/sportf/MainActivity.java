@@ -70,6 +70,7 @@ public static ArrayList<SanBong> sanBongArrayList;
         btnTintuc = findViewById(R.id.btntintuc);
         listView = findViewById(R.id.listSanbong);
         imageButtonDangNhap = findViewById(R.id.imageButtonDangNhap);
+
         sanBongArrayList = new ArrayList<>();
         Adapter_ListSanBong adapter_listSanBong = new Adapter_ListSanBong(this, R.layout.iterm_list_sanbong, sanBongArrayList);
         listView.setAdapter(adapter_listSanBong);
@@ -724,12 +725,9 @@ public static ArrayList<SanBong> sanBongArrayList;
                 if(!SharedPreferencesManager.isLogin()){
                     Toast.makeText(MainActivity.this,"Bạn phải đăng nhập trước khi đặt sân",Toast.LENGTH_LONG).show();
                     startActivity(new Intent(MainActivity.this, Dang_nhap.class));
-                }
-                else
-                {
+                } else {
                     startActivity(new Intent(MainActivity.this, Dat_Truoc_Activity.class));
                 }
-
             }
         });
 
