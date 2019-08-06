@@ -7,9 +7,8 @@ import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.MotionEvent;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -32,6 +31,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class Dat_San extends AppCompatActivity {
+    public static DonDatTruoc donDatTruoc, dondadat;
+    public static ArrayList<DonDatTruoc> donDatTruocArrayList;
     Spinner spinner;
     ArrayList<String> arrayListLoaiSan;
     String chonSan;
@@ -46,7 +47,6 @@ public class Dat_San extends AppCompatActivity {
     EditText editTextGhiChu, editTextSoGio;
     DataBaseSanBong dataBaseSanBong;
     int idSB;
-    public static DonDatTruoc donDatTruoc, dondadat;
     TextView textViewten;
     TextView textViewngay, editTextNgay, editTextGio;
     TextView textViewgio;
@@ -54,9 +54,6 @@ public class Dat_San extends AppCompatActivity {
     TextView textViewloaiSan;
     TextView textViewSoGio;
     Button buttonXacNhan;
-
-
-    public static ArrayList<DonDatTruoc> donDatTruocArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -207,7 +204,6 @@ public class Dat_San extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (textViewSoGio.getText().toString().equals("Số giờ") || textViewngay.getText().toString().equals("Ngày") || textViewgio.getText().toString().equals("Giờ")) {
-
                     dialogBaoTrung1();
                 } else {
                     if (radioButtonTrucTuyen.isChecked()) {
@@ -231,7 +227,7 @@ public class Dat_San extends AppCompatActivity {
                         for (int i = 0; i < donDatTruocArrayList1.size(); i++) {
                             if (donDatTruocArrayList1.get(i).getGio().equals(textViewgio.getText().toString())
                                     && donDatTruocArrayList1.get(i).getNgay().equals(textViewngay.getText().toString())
-                                    && donDatTruocArrayList1.get(i).getIdSB() == idSB) {
+                                    && donDatTruocArrayList1.get(i).getIdSB() == idSB && donDatTruocArrayList1.get(i).getLoaiSan().equals(chonSan)) {
                                 Toast.makeText(Dat_San.this, "Đã trùng ", Toast.LENGTH_LONG).show();
                                 dialogBaoTrung();
                                 return;
@@ -263,7 +259,7 @@ public class Dat_San extends AppCompatActivity {
                         for (int i = 0; i < donDatTruocArrayList1.size(); i++) {
                             if (donDatTruocArrayList1.get(i).getGio().equals(textViewgio.getText().toString())
                                     && donDatTruocArrayList1.get(i).getNgay().equals(textViewngay.getText().toString())
-                                    && donDatTruocArrayList1.get(i).getIdSB() == idSB) {
+                                    && donDatTruocArrayList1.get(i).getIdSB() == idSB && donDatTruocArrayList1.get(i).getLoaiSan().equals(chonSan)) {
                                 Toast.makeText(Dat_San.this, "Đã trùng ", Toast.LENGTH_LONG).show();
                                 dialogBaoTrung();
                                 return;

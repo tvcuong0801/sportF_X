@@ -1,14 +1,14 @@
 package com.example.tvcuo.sportf;
 
 public class DonDatTruoc {
+    int idSB;
+    String ghiChu;
     private int idDT;
     private String email;
-    int idSB;
     private String loaiSan;
     private String ngay;
     private String gio;
     private String soGio;
-    String ghiChu;
     private int daThanhToan;
     private int tongTien;
 

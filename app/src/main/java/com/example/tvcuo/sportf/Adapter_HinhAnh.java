@@ -6,7 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+
 import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 public class Adapter_HinhAnh extends BaseAdapter {
@@ -35,17 +37,13 @@ public class Adapter_HinhAnh extends BaseAdapter {
         return 0;
     }
 
-    private class ViewHolder{
-        ImageView hinhAnh;
-    }
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         Adapter_HinhAnh.ViewHolder holder;
-        if(convertView == null){
+        if (convertView == null) {
             holder = new Adapter_HinhAnh.ViewHolder();
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(layout,null);
+            convertView = inflater.inflate(layout, null);
             holder.hinhAnh = convertView.findViewById(R.id.imageView_item_hinhanh);
             convertView.setTag(holder);
         } else {
@@ -60,5 +58,9 @@ public class Adapter_HinhAnh extends BaseAdapter {
                 .centerCrop()
                 .into(holder.hinhAnh);
         return convertView;
+    }
+
+    private class ViewHolder {
+        ImageView hinhAnh;
     }
 }

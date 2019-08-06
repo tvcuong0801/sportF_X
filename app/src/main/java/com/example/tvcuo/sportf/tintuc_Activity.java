@@ -1,10 +1,9 @@
 package com.example.tvcuo.sportf;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.graphics.Bitmap;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.WebView;
@@ -12,8 +11,9 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
 public class tintuc_Activity extends AppCompatActivity {
-WebView webView;
-ProgressBar progressBar;
+    WebView webView;
+    ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +23,24 @@ ProgressBar progressBar;
         progressBar.setVisibility(View.VISIBLE);
         webView.setWebViewClient(new MyWebViewClient());
         goUrl();
+    }
+
+    @SuppressLint("SetJavaScriptEnabled")
+    private void goUrl() {
+        String url = "http://bongdaplus.vn/";
+        webView.getSettings().setLoadsImagesAutomatically(true);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
+        webView.loadUrl(url);
+    }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK) && webView.canGoBack()) {
+            webView.goBack();
+            return true;
+        }
+
+        return super.onKeyDown(keyCode, event);
     }
 
     public class MyWebViewClient extends WebViewClient {
@@ -43,21 +61,5 @@ ProgressBar progressBar;
 //            return super.shouldOverrideUrlLoading(view, url);
 //        }
 
-    }
-    @SuppressLint("SetJavaScriptEnabled")
-    private void goUrl()  {
-        String url = "http://bongdaplus.vn/";
-        webView.getSettings().setLoadsImagesAutomatically(true);
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
-        webView.loadUrl(url);
-    }
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if((keyCode == KeyEvent.KEYCODE_BACK) && webView.canGoBack()){
-            webView.goBack();
-            return true;
-        }
-        
-        return super.onKeyDown(keyCode, event);
     }
 }

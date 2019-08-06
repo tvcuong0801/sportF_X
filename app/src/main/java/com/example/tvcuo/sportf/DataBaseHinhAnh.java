@@ -11,23 +11,23 @@ public class DataBaseHinhAnh extends SQLiteOpenHelper {
         super(context, name, factory, version);
     }
 
-    void queryData(String sqlQuery){
-        SQLiteDatabase database= getWritableDatabase();
+    void queryData(String sqlQuery) {
+        SQLiteDatabase database = getWritableDatabase();
         database.execSQL(sqlQuery);
     }
 
-    public Cursor getDataSql(String sqlQuery){
-        SQLiteDatabase database=getReadableDatabase();
-        return database.rawQuery(sqlQuery,null);
+    public Cursor getDataSql(String sqlQuery) {
+        SQLiteDatabase database = getReadableDatabase();
+        return database.rawQuery(sqlQuery, null);
     }
 
-    void Insert(int IdSB, String Url){
-        SQLiteDatabase database= getWritableDatabase();
+    void Insert(int IdSB, String Url) {
+        SQLiteDatabase database = getWritableDatabase();
         String sql = "INSERT INTO HinhAnh VALUES(null, ?, ?)";
         SQLiteStatement statement = database.compileStatement(sql);
         statement.clearBindings();
-        statement.bindLong(1,IdSB);
-        statement.bindString(2,Url);
+        statement.bindLong(1, IdSB);
+        statement.bindString(2, Url);
 
         statement.executeInsert();
     }

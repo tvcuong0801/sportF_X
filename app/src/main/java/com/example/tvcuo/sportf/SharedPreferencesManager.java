@@ -20,39 +20,33 @@ public class SharedPreferencesManager {
         }
     }
 
-    static  void setLogin(boolean isLogin){
+    static boolean isLogin() {
+        return sPreferences.getBoolean("login", false);
+    }
+
+    static void setLogin(boolean isLogin) {
         SharedPreferences.Editor editor = sPreferences.edit();
         editor.putBoolean("login", isLogin);
         editor.apply();
     }
 
-    static boolean isLogin(){
-       return sPreferences.getBoolean("login", false);
+    static String getEmail() {
+        return sPreferences.getString("email", "");
     }
 
-    static void setEmail(String email){
+    static void setEmail(String email) {
         SharedPreferences.Editor editor = sPreferences.edit();
-        editor.putString("email",email);
+        editor.putString("email", email);
         editor.apply();
     }
 
-    static String getEmail(){
-        return sPreferences.getString("email","");
+    static String getTenFB() {
+        return sPreferences.getString("nameFB", "");
     }
 
-
-    static void setTenFB(String tenFB)
-    {
+    static void setTenFB(String tenFB) {
         SharedPreferences.Editor editor = sPreferences.edit();
-        editor.putString("nameFB",tenFB);
-        editor.apply();
-    }
-    static String getTenFB() { return sPreferences.getString("nameFB","");}
-
-
-    static void setFirstTimeSetup(boolean isFirstTime) {
-        SharedPreferences.Editor editor = sPreferences.edit();
-        editor.putBoolean(PREF_FIRST_TIME_SETUP, isFirstTime);
+        editor.putString("nameFB", tenFB);
         editor.apply();
     }
 
@@ -60,24 +54,30 @@ public class SharedPreferencesManager {
         return sPreferences.getBoolean(PREF_FIRST_TIME_SETUP, true);
     }
 
-    public static void setFirstTimeSetup2(boolean isFirstTime) {
+    static void setFirstTimeSetup(boolean isFirstTime) {
         SharedPreferences.Editor editor = sPreferences.edit();
         editor.putBoolean(PREF_FIRST_TIME_SETUP, isFirstTime);
         editor.apply();
     }
 
-    static void setIdSB_Hinh_Anh(int idSB){
+    static int getIdSB_Hinh_Anh() {
+        return sPreferences.getInt("idsb", 0);
+    }
+
+    static void setIdSB_Hinh_Anh(int idSB) {
         SharedPreferences.Editor editor = sPreferences.edit();
         editor.putInt("idsb", idSB);
         editor.apply();
     }
 
-    static int getIdSB_Hinh_Anh(){
-       return sPreferences.getInt("idsb",0);
-    }
-
     public static boolean isFirstTimeSetup2() {
         return sPreferences.getBoolean(PREF_FIRST_TIME_SETUP, true);
+    }
+
+    public static void setFirstTimeSetup2(boolean isFirstTime) {
+        SharedPreferences.Editor editor = sPreferences.edit();
+        editor.putBoolean(PREF_FIRST_TIME_SETUP, isFirstTime);
+        editor.apply();
     }
 
 }

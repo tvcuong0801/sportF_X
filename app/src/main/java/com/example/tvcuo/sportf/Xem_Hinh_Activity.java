@@ -2,8 +2,8 @@ package com.example.tvcuo.sportf;
 
 import android.app.Dialog;
 import android.database.Cursor;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -15,10 +15,10 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 public class Xem_Hinh_Activity extends AppCompatActivity {
-DataBaseHinhAnh dataBaseHinhAnh;
-GridView gridView;
-int idSB;
-ArrayList<HinhAnh> hinhAnhArrayList;
+    DataBaseHinhAnh dataBaseHinhAnh;
+    GridView gridView;
+    int idSB;
+    ArrayList<HinhAnh> hinhAnhArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,15 +28,15 @@ ArrayList<HinhAnh> hinhAnhArrayList;
         gridView = findViewById(R.id.gridViewHinhAnh);
         hinhAnhArrayList = new ArrayList<>();
 
-        idSB=SharedPreferencesManager.getIdSB_Hinh_Anh();
+        idSB = SharedPreferencesManager.getIdSB_Hinh_Anh();
 
 
         Adapter_HinhAnh adapter = new Adapter_HinhAnh(this, R.layout.item_hinh_anh, hinhAnhArrayList);
         gridView.setAdapter(adapter);
-       // lấy data từ dataBase
-        Cursor cursor = dataBaseHinhAnh.getDataSql("SELECT * FROM HinhAnh WHERE IdSB="+idSB);
+        // lấy data từ dataBase
+        Cursor cursor = dataBaseHinhAnh.getDataSql("SELECT * FROM HinhAnh WHERE IdSB=" + idSB);
 
-        while (cursor.moveToNext()){
+        while (cursor.moveToNext()) {
             hinhAnhArrayList.add(new HinhAnh(
                     cursor.getInt(0),
                     cursor.getInt(1),

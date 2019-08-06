@@ -42,26 +42,21 @@ public class Adapter_ListSanBong extends BaseAdapter {
         return 0;
     }
 
-    private class ViewHolder{
-        TextView textViewTen, textViewDiaChi, textViewLoai, textViewDanhGia;
-        ImageView hinhAnh;
-    }
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
         ViewHolder holder;
-        if(convertView == null){
+        if (convertView == null) {
             holder = new ViewHolder();
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(layout,null);
+            convertView = inflater.inflate(layout, null);
             holder.textViewTen = convertView.findViewById(R.id.textViewTen);
             holder.textViewDiaChi = convertView.findViewById(R.id.textViewDiaChi);
             holder.textViewLoai = convertView.findViewById(R.id.textViewLoai);
             holder.textViewDanhGia = convertView.findViewById(R.id.textViewDanhGia);
             holder.hinhAnh = convertView.findViewById(R.id.imageViewItemSanBong);
             convertView.setTag(holder);
-        }else {
+        } else {
             holder = (ViewHolder) convertView.getTag();
         }
         SanBong sanBong = sanBongList.get(position);
@@ -69,30 +64,26 @@ public class Adapter_ListSanBong extends BaseAdapter {
         holder.textViewDiaChi.setText(sanBong.getDiaChi());
         int loai = sanBong.getLoai();
         String strLoai = "";
-        switch (loai){
-            case 1:
-            {
+        switch (loai) {
+            case 1: {
                 strLoai = "Sân bóng đá, sân cỏ nhân tạo";
                 break;
             }
-            case 2:
-            {
+            case 2: {
                 strLoai = "Sân tenis";
                 break;
             }
-            case 3:
-            {
+            case 3: {
                 strLoai = "Sân bóng chuyền";
                 break;
             }
-            case 4:
-            {
+            case 4: {
                 strLoai = "Sân bóng rổ";
                 break;
             }
         }
         holder.textViewLoai.setText(strLoai);
-        String danhGia = Double.toString(sanBong.getDanhGia())+ "Sao";
+        String danhGia = Double.toString(sanBong.getDanhGia()) + "Sao";
         holder.textViewDanhGia.setText(danhGia);
         String url = sanBong.getHinhAnh();
         Picasso.get()
@@ -100,8 +91,13 @@ public class Adapter_ListSanBong extends BaseAdapter {
                 .resize(100, 100)
                 .centerCrop()
                 .into(holder.hinhAnh);
-        Animation animation = AnimationUtils.loadAnimation(context,R.anim.scale_list);
+        Animation animation = AnimationUtils.loadAnimation(context, R.anim.scale_list);
         convertView.startAnimation(animation);
         return convertView;
+    }
+
+    private class ViewHolder {
+        TextView textViewTen, textViewDiaChi, textViewLoai, textViewDanhGia;
+        ImageView hinhAnh;
     }
 }

@@ -182,11 +182,11 @@
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
 
     <Button
-        android:background="#e8f5fc"
         android:id="@+id/buttonDatSan"
         style="@android:style/Widget.Material.Light.Button.Small"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="#e8f5fc"
         android:text="ĐẶT NGAY"
         android:textColor="#0094fd"
         android:textSize="20sp"

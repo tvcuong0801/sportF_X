@@ -19,15 +19,15 @@
         app:layout_constraintTop_toTopOf="@+id/editTextSoGio" />
 
     <TextView
-        android:textAlignment="center"
-        android:textStyle="normal"
-        android:textSize="32sp"
-        android:textColor="#000000"
         android:id="@+id/editTextGio"
         android:layout_width="240dp"
         android:layout_height="50dp"
-        android:ems="10"
         android:background="@drawable/layout_border"
+        android:ems="10"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="32sp"
+        android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="@+id/editTextNgay"
         app:layout_constraintTop_toBottomOf="@+id/editTextNgay" />
 
@@ -118,15 +118,15 @@
 
     <TextView
 
-        android:textStyle="normal"
-        android:textSize="32sp"
-        android:background="@drawable/layout_border"
-        android:textAlignment="center"
-        android:textColor="#000000"
         android:id="@+id/editTextNgay"
         android:layout_width="240dp"
         android:layout_height="52dp"
+        android:background="@drawable/layout_border"
         android:ems="10"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="32sp"
+        android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="@+id/spinner1"
         app:layout_constraintTop_toBottomOf="@+id/spinner1" />
 
@@ -182,9 +182,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Tổng tiền"
+            android:textAppearance="@style/TextAppearance.AppCompat"
             android:textColor="@color/com_facebook_blue"
             android:textSize="15dp"
-            android:textAppearance="@style/TextAppearance.AppCompat"
             app:layout_constraintStart_toStartOf="@+id/textView_Loaisan_datsan"
             app:layout_constraintTop_toBottomOf="@+id/textView_Loaisan_datsan" />
 
@@ -257,12 +257,12 @@
     </android.support.constraint.ConstraintLayout>
 
     <EditText
-        android:textAlignment="center"
         android:id="@+id/editTextSoGio"
         android:layout_width="240dp"
         android:layout_height="50dp"
         android:ems="10"
         android:inputType="number"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="@+id/editTextGio"
         app:layout_constraintTop_toBottomOf="@+id/editTextGio" />
 

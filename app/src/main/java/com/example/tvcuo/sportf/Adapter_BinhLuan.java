@@ -8,7 +8,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 public class Adapter_BinhLuan extends BaseAdapter {
@@ -37,32 +39,27 @@ public class Adapter_BinhLuan extends BaseAdapter {
         return 0;
     }
 
-    private class ViewHolder{
-        TextView textViewTenCmt, textViewCmt, textViewDanhGiaCmt;
-        ImageView hinhAnh;
-    }
-
     @SuppressLint("SetTextI18n")
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
         Adapter_BinhLuan.ViewHolder holder;
-        if(convertView == null){
+        if (convertView == null) {
             holder = new Adapter_BinhLuan.ViewHolder();
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(layout,null);
+            convertView = inflater.inflate(layout, null);
             holder.textViewTenCmt = convertView.findViewById(R.id.textViewTen_Cmt);
             holder.textViewDanhGiaCmt = convertView.findViewById(R.id.textView_danhgia_cmt);
             holder.textViewCmt = convertView.findViewById(R.id.textViewCmt);
             holder.hinhAnh = convertView.findViewById(R.id.imageViewHinhAnh_cmt);
             convertView.setTag(holder);
-        }else {
+        } else {
             holder = (Adapter_BinhLuan.ViewHolder) convertView.getTag();
         }
-        BinhLuan binhLuan= listBinhLuan.get(position);
+        BinhLuan binhLuan = listBinhLuan.get(position);
         holder.textViewTenCmt.setText(binhLuan.getTen());
         holder.textViewCmt.setText(binhLuan.getCmt());
-        holder.textViewDanhGiaCmt.setText(Integer.toString(binhLuan.getDanhGia())+" sao");
+        holder.textViewDanhGiaCmt.setText(Integer.toString(binhLuan.getDanhGia()) + " sao");
         String url = binhLuan.getHinhAnh();
         Picasso.get()
                 .load(url)
@@ -70,5 +67,10 @@ public class Adapter_BinhLuan extends BaseAdapter {
                 .centerCrop()
                 .into(holder.hinhAnh);
         return convertView;
+    }
+
+    private class ViewHolder {
+        TextView textViewTenCmt, textViewCmt, textViewDanhGiaCmt;
+        ImageView hinhAnh;
     }
 }
