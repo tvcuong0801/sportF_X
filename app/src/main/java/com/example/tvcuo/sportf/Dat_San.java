@@ -370,7 +370,7 @@ public class Dat_San extends AppCompatActivity {
 
     public void dialogXacNhanTraTaiCho() {
         final AlertDialog.Builder dialogXoa = new AlertDialog.Builder(this);
-        dialogXoa.setMessage("Số tiền tạm tính của bạn là: " + tongTien + ". Đây là số tiền tạm tính chưa  bao gồm tiền dịch vụ và tiền thêm giờ. Nếu không đơn đặt trước sẽ bị hủy!");
+        dialogXoa.setMessage("Số tiền tạm tính của bạn là: " + tongTien + ". Đây là số tiền tạm tính chưa  bao gồm tiền dịch vụ và tiền thêm giờ. Bạn phải có mặt tại sân trước ít nhất 10  phút. Nếu không đơn đặt trước sẽ bị hủy!");
         dialogXoa.setNegativeButton("Không", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
