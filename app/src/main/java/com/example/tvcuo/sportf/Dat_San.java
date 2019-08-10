@@ -144,9 +144,45 @@ public class Dat_San extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
                 chonSan = arrayListLoaiSan.get(position);
                 checkBoxChonSan.setVisibility(View.VISIBLE);
                 textViewloaiSan.setText("Loại sân: " + chonSan);
+
+                switch (chonSan) {
+                    case "Sân 20 người": {
+                        tongTien = 150000;
+                        break;
+                    }
+                    case "Sân 20 người có khán đài": {
+                        tongTien = 200000;
+                        break;
+                    }
+                    case "Sân 15 người": {
+                        tongTien = 120000;
+                        break;
+                    }
+                    case "Có khán đài": {
+                        tongTien = 150000;
+                        break;
+                    }
+                    case "Không khán đài": {
+                        tongTien = 130000;
+                        break;
+                    }
+                    case "Một rổ": {
+                        tongTien = 120000;
+                        break;
+                    }
+                    case "Hai rổ có khán đài": {
+                        tongTien = 200000;
+                        break;
+                    }
+                    case "Hai rổ không khán đài": {
+                        tongTien = 180000;
+                        break;
+                    }
+                }
             }
 
             @Override
@@ -334,7 +370,7 @@ public class Dat_San extends AppCompatActivity {
 
     public void dialogXacNhanTraTaiCho() {
         final AlertDialog.Builder dialogXoa = new AlertDialog.Builder(this);
-        dialogXoa.setMessage("Bạn phải thanh toán số tiền: " + tongTien + " trước 15 phút tại sân. Nếu không đơn đặt trước sẽ bị hủy");
+        dialogXoa.setMessage("Số tiền tạm tính của bạn là: " + tongTien + ". Đây là số tiền tạm tính chưa  bao gồm tiền dịch vụ và tiền thêm giờ. Nếu không đơn đặt trước sẽ bị hủy!");
         dialogXoa.setNegativeButton("Không", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
