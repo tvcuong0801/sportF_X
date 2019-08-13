@@ -26,12 +26,14 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 public class Dat_San extends AppCompatActivity {
-    public static DonDatTruoc donDatTruoc, dondadat;
+    public static DonDatTruoc donDatTruoc;
     public static ArrayList<DonDatTruoc> donDatTruocArrayList;
     Spinner spinner;
     ArrayList<String> arrayListLoaiSan;
@@ -41,6 +43,7 @@ public class Dat_San extends AppCompatActivity {
     String gioChon;
     String soGio;
     int tongTien = 120000;
+    int tongTien1 = 1;
     ImageView imageViewHinhAnh;
     RadioButton radioButtonTaiCho, radioButtonTrucTuyen;
     CheckBox checkBoxChonSan, checkBoxChonNgay, checkBoxChonGio, checkBoxSoGio;
@@ -106,14 +109,17 @@ public class Dat_San extends AppCompatActivity {
 
         switch (sanBong.getLoai()) {
             case 1: {
-                arrayListLoaiSan.add("Sân 20 người");
-                arrayListLoaiSan.add("Sân 20 người có khán đài");
-                arrayListLoaiSan.add("Sân 15 người");
+                arrayListLoaiSan.add("Sân 10 người");
+                arrayListLoaiSan.add("Sân 10 người có khán đài (số 1)");
+                arrayListLoaiSan.add("Sân 5 người (số 1)");
+                arrayListLoaiSan.add("Sân 10 người có khán đài (số 2)");
+                arrayListLoaiSan.add("Sân 5 người (số 2)");
                 break;
             }
             case 2: {
                 arrayListLoaiSan.add("Có khán đài");
-                arrayListLoaiSan.add("Không khán đài");
+                arrayListLoaiSan.add("Không khán đài (số 1)");
+                arrayListLoaiSan.add("Không khán đài (số 2)");
                 break;
             }
             case 3: {
@@ -150,36 +156,52 @@ public class Dat_San extends AppCompatActivity {
                 textViewloaiSan.setText("Loại sân: " + chonSan);
 
                 switch (chonSan) {
-                    case "Sân 20 người": {
-                        tongTien = 150000;
+                    case "Sân 10 người": {
+                        tongTien1 = 150000;
                         break;
                     }
-                    case "Sân 20 người có khán đài": {
-                        tongTien = 200000;
+                    case "Sân 10 người có khán đài (số 1)": {
+                        tongTien1 = 200000;
                         break;
                     }
-                    case "Sân 15 người": {
-                        tongTien = 120000;
+                    case "Sân 10 người có khán đài (số 2)": {
+                        tongTien1 = 200000;
+                        break;
+                    }
+                    case "Sân 5 người (số 1)": {
+                        tongTien1 = 120000;
+                        break;
+                    }
+                    case "Sân 5 người (số 2)": {
+                        tongTien1 = 120000;
                         break;
                     }
                     case "Có khán đài": {
-                        tongTien = 150000;
+                        tongTien1 = 150000;
                         break;
                     }
                     case "Không khán đài": {
-                        tongTien = 130000;
+                        tongTien1 = 130000;
+                        break;
+                    }
+                    case "Không khán đài (số 1)": {
+                        tongTien1 = 130000;
+                        break;
+                    }
+                    case "Không khán đài (số 2)": {
+                        tongTien1 = 130000;
                         break;
                     }
                     case "Một rổ": {
-                        tongTien = 120000;
+                        tongTien1 = 120000;
                         break;
                     }
                     case "Hai rổ có khán đài": {
-                        tongTien = 200000;
+                        tongTien1 = 200000;
                         break;
                     }
                     case "Hai rổ không khán đài": {
-                        tongTien = 180000;
+                        tongTien1 = 180000;
                         break;
                     }
                 }
@@ -201,7 +223,8 @@ public class Dat_San extends AppCompatActivity {
                 if (soGio.equals("")) {
                     soGio = "1";
                 } else
-                    textViewtongtien.setText(Integer.toString(tongTien * Integer.parseInt(soGio)));
+                    tongTien = tongTien1;
+                textViewtongtien.setText(Integer.toString(tongTien * Integer.parseInt(soGio)));
                 if (textViewtongtien.getText().toString().equals("Tổng tiền")) {
                     tongTien = 120000;
                 } else tongTien = Integer.parseInt(textViewtongtien.getText().toString());
@@ -348,6 +371,26 @@ public class Dat_San extends AppCompatActivity {
         dialogXoa.show();
     }
 
+    public void dialogBaoLoiGio() {
+        final AlertDialog.Builder dialogXoa = new AlertDialog.Builder(this);
+        dialogXoa.setMessage("Giờ bạn chọn phải sau giờ hiện tại và trước 21h00, xin mời đặt lại!");
+        dialogXoa.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                startActivity(new Intent(Dat_San.this, MainActivity.class));
+            }
+        });
+        dialogXoa.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(Dat_San.this, XemSan_Activity.class);
+                intent.putExtra("id", idSB);
+                startActivity(intent);
+            }
+        });
+        dialogXoa.show();
+    }
+
     public void dialogBaoTrung1() {
         final AlertDialog.Builder dialogXoa = new AlertDialog.Builder(this);
         dialogXoa.setMessage("Bạn chưa điền đủ thông tin , xin mời đặt lại!");
@@ -420,13 +463,10 @@ public class Dat_San extends AppCompatActivity {
     }
 
     private void chonGio() {
-
-
         final Calendar calendar = Calendar.getInstance();
         int gio = calendar.get(Calendar.HOUR_OF_DAY);
         int phut = calendar.get(Calendar.MINUTE);
         TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
-
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                 @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
@@ -434,6 +474,26 @@ public class Dat_San extends AppCompatActivity {
                 editTextGio.setText(simpleDateFormat.format(calendar.getTime()));
                 textViewgio.setText(simpleDateFormat.format(calendar.getTime()));
                 gioChon = editTextGio.getText().toString();
+                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+                String currentDate = format.format(Calendar.getInstance().getTime());
+                SimpleDateFormat format2 = new SimpleDateFormat("HH:mm");
+                String currentTime = format2.format(Calendar.getInstance().getTime());
+                String midNight = "21:00";
+                Date date1 = null;
+                Date giochon1 = null;
+                Date midNight1 = null;
+                try {
+                    giochon1 = format2.parse(gioChon);
+                    date1 = format2.parse(currentTime);
+                    midNight1 = format2.parse(midNight);
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                if ((ngayChon.equals(currentDate) && giochon1.before(date1)) || giochon1.after(midNight1)) {
+                    dialogBaoLoiGio();
+                }
             }
         }, gio, phut, true);
         timePickerDialog.show();
@@ -454,6 +514,7 @@ public class Dat_San extends AppCompatActivity {
                 ngayChon = editTextNgay.getText().toString();
             }
         }, Nam, Thang, Ngay);
+        datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
         datePickerDialog.show();
     }
 }

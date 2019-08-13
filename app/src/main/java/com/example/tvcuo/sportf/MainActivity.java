@@ -34,7 +34,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
-        // tạo file
+        makeData();
+        checkFirstTime();
+        initView();
+        control();
+    }
+
+    private void makeData(){
         dataBaseSanBong = new DataBaseSanBong(this, "sanbong.sqlite", null, 1);
         //tạo bảng
         dataBaseSanBong.queryData("CREATE TABLE IF NOT EXISTS SanBong(Id INTEGER PRIMARY KEY AUTOINCREMENT, Ten NVARCHAR(250), DiaChi NVARCHAR(250), Loai INTEGER(2), DanhGia DOUBLE(2), HinhAnh NVARCHAR(300))");
@@ -43,23 +49,18 @@ public class MainActivity extends AppCompatActivity {
         dataBaseHinhAnh = new DataBaseHinhAnh(this, "hinhanh.sqlite", null, 1);
         dataBaseHinhAnh.queryData("CREATE TABLE IF NOT EXISTS HinhAnh(IdHA INTEGER PRIMARY KEY AUTOINCREMENT, IdSB LONG , Url NVARCHAR(300))");
         dataBaseSanBong.queryData("UPDATE SanBong SET HinhAnh ='" + "http://asiansports.com.vn/wp-content/uploads/2017/07/IMG_20170619_210927-450x600.jpg" + "' WHERE Ten = '" + "Basket" + "'");
-        checkFirstTime();
-        initView();
-        control();
     }
 
-
-    // kiểm tra đã có phải lần đầu tiên hay
     private void checkFirstTime() {
         SharedPreferencesManager.init(this);
         if (SharedPreferencesManager.isFirstTimeSetup()) {
             insertDataBaseSanBong();
             insertDataBaseHinhAnh();
-            //insertDataDatTruoc();
             insertDataBinhLuan();
             SharedPreferencesManager.setFirstTimeSetup(false);
         } else {
-            Toast.makeText(this, "Chào mừng trở lại", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Chào mừng" + SharedPreferencesManager.getTenFB() +
+                    " trở lại", Toast.LENGTH_LONG).show();
         }
     }
 

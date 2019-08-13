@@ -83,7 +83,7 @@ public class Adapter_ListSanBong extends BaseAdapter {
             }
         }
         holder.textViewLoai.setText(strLoai);
-        String danhGia = Double.toString(sanBong.getDanhGia()) + "Sao";
+        String danhGia = Double.toString(sanBong.getDanhGia()) + " Sao";
         holder.textViewDanhGia.setText(danhGia);
         String url = sanBong.getHinhAnh();
         Picasso.get()
