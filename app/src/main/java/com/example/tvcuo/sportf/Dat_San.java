@@ -291,6 +291,7 @@ public class Dat_San extends AppCompatActivity {
 
     public void dialogBaoTrung() {
         final AlertDialog.Builder dialogXoa = new AlertDialog.Builder(this);
+        dialogXoa.setTitle("Lỗi chọn sân");
         dialogXoa.setMessage("Sân đặt trùng , xin mời đặt lại!");
         dialogXoa.setNegativeButton("Không", new DialogInterface.OnClickListener() {
             @Override
@@ -311,7 +312,8 @@ public class Dat_San extends AppCompatActivity {
 
     public void dialogBaoLoiGio() {
         final AlertDialog.Builder dialogXoa = new AlertDialog.Builder(this);
-        dialogXoa.setMessage("Giờ bạn chọn phải sau giờ hiện tại và trước 21h00, xin mời đặt lại!");
+        dialogXoa.setTitle("Lỗi chọn giờ");
+        dialogXoa.setMessage("Giờ bạn chọn phải sau 4h00 sáng, trước 21h00 đêm, nếu đặt trong ngày hôm nay phải đặt sau giờ hiện tại, xin mời đặt lại!");
         dialogXoa.setNegativeButton("Không", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -331,7 +333,8 @@ public class Dat_San extends AppCompatActivity {
 
     public void dialogBaoTrung1() {
         final AlertDialog.Builder dialogXoa = new AlertDialog.Builder(this);
-        dialogXoa.setMessage("Bạn chưa điền đủ thông tin , xin mời đặt lại!");
+        dialogXoa.setTitle("Lỗi nhập");
+        dialogXoa.setMessage("Bạn chưa điền đủ thông tin, xin mời đặt lại!");
         dialogXoa.setNegativeButton("Không", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -351,6 +354,7 @@ public class Dat_San extends AppCompatActivity {
 
     public void dialogXacNhanTraTaiCho() {
         final AlertDialog.Builder dialogXoa = new AlertDialog.Builder(this);
+        dialogXoa.setTitle("Thông báo");
         dialogXoa.setMessage("Số tiền tạm tính của bạn là: " + tongTien + ". Đây là số tiền tạm tính chưa  bao gồm tiền dịch vụ và tiền thêm giờ. Bạn phải có mặt tại sân trước ít nhất 10  phút. Nếu không đơn đặt trước sẽ bị hủy!");
         dialogXoa.setNegativeButton("Không", new DialogInterface.OnClickListener() {
             @Override
@@ -418,19 +422,22 @@ public class Dat_San extends AppCompatActivity {
                 SimpleDateFormat format2 = new SimpleDateFormat("HH:mm");
                 String currentTime = format2.format(Calendar.getInstance().getTime());
                 String midNight = "21:00";
+                String firstHour = "4:00";
                 Date date1 = null;
                 Date giochon1 = null;
                 Date midNight1 = null;
+                Date firstHour1 = null;
                 try {
                     giochon1 = format2.parse(gioChon);
                     date1 = format2.parse(currentTime);
                     midNight1 = format2.parse(midNight);
+                    firstHour1 = format2.parse(firstHour);
 
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
 
-                if ((ngayChon.equals(currentDate) && giochon1.before(date1)) || giochon1.after(midNight1)) {
+                if ((ngayChon.equals(currentDate) && giochon1.before(date1)) || giochon1.after(midNight1) || giochon1.before(firstHour1)) {
                     dialogBaoLoiGio();
                 }
             }
