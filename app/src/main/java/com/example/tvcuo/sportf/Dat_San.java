@@ -267,6 +267,7 @@ public class Dat_San extends AppCompatActivity {
 
             }
         });
+
         radioButtonTaiCho.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -275,6 +276,7 @@ public class Dat_San extends AppCompatActivity {
                 }
             }
         });
+
         radioButtonTrucTuyen.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -415,7 +417,6 @@ public class Dat_San extends AppCompatActivity {
         editTextSoGio = findViewById(R.id.editTextSoGio);
         textViewSoGio = findViewById(R.id.textViewSoGio_dt);
         buttonXacNhan = findViewById(R.id.buttonXacNhan);
-
         checkBoxChonNgay.setVisibility(View.INVISIBLE);
         checkBoxChonGio.setVisibility(View.INVISIBLE);
         checkBoxChonSan.setVisibility(View.INVISIBLE);
