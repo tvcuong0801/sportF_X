@@ -239,7 +239,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="Loại sân"
+            android:text="Sân"
             android:textAppearance="@style/TextAppearance.AppCompat"
             app:layout_constraintStart_toStartOf="@+id/textViewNgay_datsan"
             app:layout_constraintTop_toBottomOf="@+id/textViewNgay_datsan" />
