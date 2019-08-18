@@ -155,6 +155,9 @@ public class Dat_San extends AppCompatActivity {
                 checkBoxSoGio.setVisibility(View.VISIBLE);
                 textViewSoGio.setText(editTextSoGio.getText().toString());
                 soGio = editTextSoGio.getText().toString();
+                if(Integer.parseInt(soGio) > 16){
+                    dialogBaoDuGio();
+                }
                 if (soGio.equals("")) {
                     soGio = "1";
                 } else
@@ -163,6 +166,7 @@ public class Dat_San extends AppCompatActivity {
                 if (textViewtongtien.getText().toString().equals("Tổng tiền")) {
                     tongTien = 120000;
                 } else tongTien = Integer.parseInt(textViewtongtien.getText().toString());
+
             }
         });
 
@@ -285,6 +289,27 @@ public class Dat_San extends AppCompatActivity {
         final AlertDialog.Builder dialogXoa = new AlertDialog.Builder(this);
         dialogXoa.setTitle("Lỗi chọn sân");
         dialogXoa.setMessage("Sân đặt trùng , xin mời đặt lại!");
+        dialogXoa.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                startActivity(new Intent(Dat_San.this, MainActivity.class));
+            }
+        });
+        dialogXoa.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(Dat_San.this, XemSan_Activity.class);
+                intent.putExtra("id", idSB);
+                startActivity(intent);
+            }
+        });
+        dialogXoa.show();
+    }
+
+    public void dialogBaoDuGio() {
+        final AlertDialog.Builder dialogXoa = new AlertDialog.Builder(this);
+        dialogXoa.setTitle("Lỗi chọn số giờ");
+        dialogXoa.setMessage("Số giờ chọn đặt phải nhiều hơn 1 và ít hơn 16, xin mời đặt lại!");
         dialogXoa.setNegativeButton("Không", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
