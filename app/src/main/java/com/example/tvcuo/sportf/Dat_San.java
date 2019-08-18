@@ -23,9 +23,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
-
 import com.squareup.picasso.Picasso;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -126,13 +124,10 @@ public class Dat_San extends AppCompatActivity {
             giaSanArrayList.add(sanConArrayList.get(i).getGia());
         }
 
-
         final ArrayAdapter<String> adapter = new ArrayAdapter<>(Dat_San.this, R.layout.support_simple_spinner_dropdown_item, arrayListLoaiSan);
         adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         control();
-
-
     }
 
     private void control() {
@@ -152,7 +147,6 @@ public class Dat_San extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-
 
         editTextSoGio.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("SetTextI18n")
@@ -269,8 +263,6 @@ public class Dat_San extends AppCompatActivity {
 
             }
         });
-
-
         radioButtonTaiCho.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
