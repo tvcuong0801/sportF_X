@@ -147,7 +147,7 @@ public class Dat_San extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 chonSan = arrayListLoaiSan.get(position);
                 checkBoxChonSan.setVisibility(View.VISIBLE);
-                textViewloaiSan.setText("Loại sân: " + chonSan);
+                textViewloaiSan.setText("Sân: " + chonSan);
                 tongTien1 = giaSanArrayList.get(position);
                 textViewGiaSan.setText(String.valueOf(tongTien1));
             }
