@@ -31,12 +31,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Map;
 
 public class Dat_San extends AppCompatActivity {
     public static DonDatTruoc donDatTruoc;
     public static ArrayList<DonDatTruoc> donDatTruocArrayList;
-
     Spinner spinner;
     ArrayList<String> arrayListLoaiSan;
     ArrayList<SanCon> sanConArrayList;
@@ -123,15 +121,13 @@ public class Dat_San extends AppCompatActivity {
 
         arrayListLoaiSan = new ArrayList<>();
 
-        for(int i = 0; i< sanConArrayList.size(); i++){
+        for (int i = 0; i < sanConArrayList.size(); i++) {
             arrayListLoaiSan.add(sanConArrayList.get(i).getTen());
             giaSanArrayList.add(sanConArrayList.get(i).getGia());
         }
 
 
-        final ArrayAdapter<String> adapter = new ArrayAdapter<>(Dat_San.this,
-                R.layout.support_simple_spinner_dropdown_item,
-                arrayListLoaiSan);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<>(Dat_San.this, R.layout.support_simple_spinner_dropdown_item, arrayListLoaiSan);
         adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         control();
@@ -151,6 +147,7 @@ public class Dat_San extends AppCompatActivity {
                 tongTien1 = giaSanArrayList.get(position);
                 textViewGiaSan.setText(String.valueOf(tongTien1));
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
