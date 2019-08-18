@@ -37,6 +37,18 @@ public class DataBaseSanBong extends SQLiteOpenHelper {
         statement.executeInsert();
     }
 
+    void insertDataSanCon(int idSB, String ten, int gia) {
+        SQLiteDatabase database = getWritableDatabase();
+        String sql = "INSERT INTO SanCon1 VALUES(null, ?, ?, ?)";
+        SQLiteStatement statement = database.compileStatement(sql);
+        statement.clearBindings();
+        statement.bindLong(1, idSB);
+        statement.bindString(2, ten);
+        statement.bindLong(3, gia);
+        statement.executeInsert();
+    }
+
+
 
     void Insert(String ten, String diachi, int loai, double danhgia, String hinhAnh) {
         SQLiteDatabase database = getWritableDatabase();

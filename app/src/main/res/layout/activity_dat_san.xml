@@ -56,8 +56,8 @@
     <ImageView
         android:id="@+id/imageView_DatSan_HinhAnh"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:scaleType="fitXY"
+        android:layout_height="140dp"
+        android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -69,7 +69,6 @@
         android:layout_width="280dp"
         android:layout_height="44dp"
         android:layout_marginStart="55dp"
-        android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView_DatSan_HinhAnh" />
 
@@ -121,6 +120,7 @@
         android:id="@+id/editTextNgay"
         android:layout_width="240dp"
         android:layout_height="52dp"
+        android:layout_marginEnd="8dp"
         android:background="@drawable/layout_border"
         android:ems="10"
         android:textAlignment="center"
@@ -128,7 +128,7 @@
         android:textSize="32sp"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="@+id/spinner1"
-        app:layout_constraintTop_toBottomOf="@+id/spinner1" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewGiaSan" />
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout3"
@@ -147,7 +147,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="186dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="185dp"
             android:text="Tên"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
@@ -160,7 +160,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="46dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:text="Ngày"
             android:textAppearance="@style/TextAppearance.AppCompat"
             app:layout_constraintStart_toStartOf="parent"
@@ -180,7 +180,7 @@
             android:id="@+id/textViewTongTien_DatSan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:text="Tổng tiền"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textColor="@color/com_facebook_blue"
@@ -202,7 +202,7 @@
             android:id="@+id/radioButtonTrucTuyen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:clickable="true"
             android:text="Thanh toán trực tuyến"
             android:textAppearance="@style/TextAppearance.AppCompat"
@@ -213,7 +213,7 @@
             android:id="@+id/radioButtonTaiCho"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:clickable="true"
             android:text="Thanh toán tại sân"
             app:layout_constraintStart_toStartOf="@+id/radioButtonTrucTuyen"
@@ -224,7 +224,7 @@
             android:layout_width="200dp"
             android:layout_height="30dp"
             android:layout_marginStart="161dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:layout_marginEnd="162dp"
             android:background="#e8f5fc"
             android:text="Xác nhận"
@@ -238,7 +238,7 @@
             android:id="@+id/textView_Loaisan_datsan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:text="Loại sân"
             android:textAppearance="@style/TextAppearance.AppCompat"
             app:layout_constraintStart_toStartOf="@+id/textViewNgay_datsan"
@@ -265,5 +265,26 @@
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="@+id/editTextGio"
         app:layout_constraintTop_toBottomOf="@+id/editTextGio" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="Giá: "
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewGiaSan"
+        app:layout_constraintEnd_toStartOf="@+id/textViewGiaSan" />
+
+    <TextView
+        android:id="@+id/textViewGiaSan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="                  "
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="@+id/editTextNgay"
+        app:layout_constraintTop_toBottomOf="@+id/spinner1" />
 
 </android.support.constraint.ConstraintLayout>

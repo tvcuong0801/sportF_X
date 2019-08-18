@@ -31,12 +31,16 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Map;
 
 public class Dat_San extends AppCompatActivity {
     public static DonDatTruoc donDatTruoc;
     public static ArrayList<DonDatTruoc> donDatTruocArrayList;
+
     Spinner spinner;
     ArrayList<String> arrayListLoaiSan;
+    ArrayList<SanCon> sanConArrayList;
+    ArrayList<Integer> giaSanArrayList;
     String chonSan;
     String email;
     String ngayChon;
@@ -51,6 +55,7 @@ public class Dat_San extends AppCompatActivity {
     DataBaseSanBong dataBaseSanBong;
     int idSB;
     TextView textViewten;
+    TextView textViewGiaSan;
     TextView textViewngay, editTextNgay, editTextGio;
     TextView textViewgio;
     TextView textViewtongtien;
@@ -65,7 +70,8 @@ public class Dat_San extends AppCompatActivity {
         setContentView(R.layout.activity_dat_san);
         innitView();
         donDatTruocArrayList = new ArrayList<>();
-
+        sanConArrayList = new ArrayList<>();
+        giaSanArrayList = new ArrayList<>();
         email = SharedPreferencesManager.getEmail();
         idSB = SharedPreferencesManager.getIdSB_Hinh_Anh();
 
@@ -98,6 +104,16 @@ public class Dat_San extends AppCompatActivity {
             ));
         }
 
+        Cursor cursor2 = dataBaseSanBong.getDataSql("SELECT * FROM SanCon1 WHERE idSB = " + idSB);
+        while (cursor2.moveToNext()) {
+            sanConArrayList.add(new SanCon(
+                    cursor2.getInt(0),
+                    cursor2.getInt(1),
+                    cursor2.getString(2),
+                    cursor2.getInt(3)
+
+            ));
+        }
 
         assert sanBong != null;
         String url = sanBong.getHinhAnh();
@@ -107,33 +123,11 @@ public class Dat_San extends AppCompatActivity {
 
         arrayListLoaiSan = new ArrayList<>();
 
-        switch (sanBong.getLoai()) {
-            case 1: {
-                arrayListLoaiSan.add("Sân 10 người");
-                arrayListLoaiSan.add("Sân 10 người có khán đài (số 1)");
-                arrayListLoaiSan.add("Sân 5 người (số 1)");
-                arrayListLoaiSan.add("Sân 10 người có khán đài (số 2)");
-                arrayListLoaiSan.add("Sân 5 người (số 2)");
-                break;
-            }
-            case 2: {
-                arrayListLoaiSan.add("Có khán đài");
-                arrayListLoaiSan.add("Không khán đài (số 1)");
-                arrayListLoaiSan.add("Không khán đài (số 2)");
-                break;
-            }
-            case 3: {
-                arrayListLoaiSan.add("Có khán đài");
-                arrayListLoaiSan.add("Không khán đài");
-                break;
-            }
-            case 4: {
-                arrayListLoaiSan.add("Một rổ");
-                arrayListLoaiSan.add("Hai rổ có khán đài");
-                arrayListLoaiSan.add("Hai rổ không khán đài");
-                break;
-            }
+        for(int i = 0; i< sanConArrayList.size(); i++){
+            arrayListLoaiSan.add(sanConArrayList.get(i).getTen());
+            giaSanArrayList.add(sanConArrayList.get(i).getGia());
         }
+
 
         final ArrayAdapter<String> adapter = new ArrayAdapter<>(Dat_San.this,
                 R.layout.support_simple_spinner_dropdown_item,
@@ -146,67 +140,17 @@ public class Dat_San extends AppCompatActivity {
     }
 
     private void control() {
+
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @SuppressLint("SetTextI18n")
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
                 chonSan = arrayListLoaiSan.get(position);
                 checkBoxChonSan.setVisibility(View.VISIBLE);
                 textViewloaiSan.setText("Loại sân: " + chonSan);
-
-                switch (chonSan) {
-                    case "Sân 10 người": {
-                        tongTien1 = 150000;
-                        break;
-                    }
-                    case "Sân 10 người có khán đài (số 1)": {
-                        tongTien1 = 200000;
-                        break;
-                    }
-                    case "Sân 10 người có khán đài (số 2)": {
-                        tongTien1 = 200000;
-                        break;
-                    }
-                    case "Sân 5 người (số 1)": {
-                        tongTien1 = 120000;
-                        break;
-                    }
-                    case "Sân 5 người (số 2)": {
-                        tongTien1 = 120000;
-                        break;
-                    }
-                    case "Có khán đài": {
-                        tongTien1 = 150000;
-                        break;
-                    }
-                    case "Không khán đài": {
-                        tongTien1 = 130000;
-                        break;
-                    }
-                    case "Không khán đài (số 1)": {
-                        tongTien1 = 130000;
-                        break;
-                    }
-                    case "Không khán đài (số 2)": {
-                        tongTien1 = 130000;
-                        break;
-                    }
-                    case "Một rổ": {
-                        tongTien1 = 120000;
-                        break;
-                    }
-                    case "Hai rổ có khán đài": {
-                        tongTien1 = 200000;
-                        break;
-                    }
-                    case "Hai rổ không khán đài": {
-                        tongTien1 = 180000;
-                        break;
-                    }
-                }
+                tongTien1 = giaSanArrayList.get(position);
+                textViewGiaSan.setText(String.valueOf(tongTien1));
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
@@ -228,7 +172,6 @@ public class Dat_San extends AppCompatActivity {
                 if (textViewtongtien.getText().toString().equals("Tổng tiền")) {
                     tongTien = 120000;
                 } else tongTien = Integer.parseInt(textViewtongtien.getText().toString());
-
             }
         });
 
@@ -257,7 +200,6 @@ public class Dat_San extends AppCompatActivity {
                 checkBoxChonGio.setVisibility(View.VISIBLE);
             }
         });
-
 
         buttonXacNhan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -294,7 +236,6 @@ public class Dat_San extends AppCompatActivity {
                         }
                         startActivity(new Intent(Dat_San.this, Thanh_Toan_Activity.class));
                         donDatTruoc = new DonDatTruoc(donDatTruocArrayList.size() + 1, email, idSB, chonSan, ngayChon, gioChon, soGio, editTextGhiChu.getText().toString(), 1, tongTien);
-
 
                     } else if (radioButtonTaiCho.isChecked()) {
 
@@ -449,6 +390,7 @@ public class Dat_San extends AppCompatActivity {
         textViewngay = findViewById(R.id.textViewNgay_datsan);
         textViewgio = findViewById(R.id.textViewGio_datsan);
         textViewtongtien = findViewById(R.id.textViewTongTien_DatSan);
+        textViewGiaSan = findViewById(R.id.textViewGiaSan);
         textViewloaiSan = findViewById(R.id.textView_Loaisan_datsan);
         imageViewHinhAnh = findViewById(R.id.imageView_DatSan_HinhAnh);
         checkBoxSoGio = findViewById(R.id.checkBoxSogio);

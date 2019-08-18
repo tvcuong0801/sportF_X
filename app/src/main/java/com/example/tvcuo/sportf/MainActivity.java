@@ -17,35 +17,28 @@ public class MainActivity extends AppCompatActivity {
     public static DataBaseSanBong dataBaseSanBong;
     public static DataBaseHinhAnh dataBaseHinhAnh;
     public static ArrayList<SanBong> sanBongArrayList;
+    public static ArrayList<SanCon> sanConArrayList;
     ImageButton btnKhamPha, btnDatTruoc, btnTintuc;
     ImageButton imageButtonDangNhap;
     ListView listView;
-
-    public static void insertDatTruoc(String email, int idSB, String chonSan, String ngayChon, String gioChon, String soGio, String ghiChu, int daThanhToan, int tongTien) {
-        dataBaseSanBong.InsertDataDatTruoc(email, idSB, chonSan, ngayChon, gioChon, soGio, ghiChu, daThanhToan, tongTien);
-    }
-
-    public static void InsertCMT(int idSB, String s, int i) {
-        dataBaseSanBong.InsertBinhLuan(idSB, s, "https://cdn.iconscout.com/icon/free/png-256/avatar-372-456324.png", SharedPreferencesManager.getTenFB(), i);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
-        makeData();
+        makeDataBase();
         checkFirstTime();
         initView();
         control();
     }
 
-    private void makeData(){
+    private void makeDataBase() {
         dataBaseSanBong = new DataBaseSanBong(this, "sanbong.sqlite", null, 1);
-        //tạo bảng
         dataBaseSanBong.queryData("CREATE TABLE IF NOT EXISTS SanBong(Id INTEGER PRIMARY KEY AUTOINCREMENT, Ten NVARCHAR(250), DiaChi NVARCHAR(250), Loai INTEGER(2), DanhGia DOUBLE(2), HinhAnh NVARCHAR(300))");
+        dataBaseSanBong.queryData("CREATE TABLE IF NOT EXISTS SanCon1(IdSC INTEGER PRIMARY KEY AUTOINCREMENT, IdSB LONG , Ten NVARCHAR(300), Gia LONG)");
         dataBaseSanBong.queryData("CREATE TABLE IF NOT EXISTS BinhLuan(Idbl INTEGER PRIMARY KEY AUTOINCREMENT, IdSB LONG , Cmt NVARCHAR(300), HinhAnh NVARCHAR(500), Ten NVARCHAR (50), DanhGia LONG)");
-        dataBaseSanBong.queryData("CREATE TABLE IF NOT EXISTS DonDatTruoc (IdDT INTEGER PRIMARY KEY AUTOINCREMENT, Email NVARCHAR(50), IdSB LONG(2), LoaiSan NVARCHAR(50), Ngay NVARCHAR(20), Gio NVARCHAR(20), SoGio NVARCHAR(2), GhiChu NVARCHAR(250), DaThanhToan INTEGER(2), TongTien INTEGER(2))");
+        dataBaseSanBong.queryData("CREATE TABLE IF NOT EXISTS DonDatTruoc(IdDT INTEGER PRIMARY KEY AUTOINCREMENT, Email NVARCHAR(50), IdSB LONG(2), LoaiSan NVARCHAR(50), Ngay NVARCHAR(20), Gio NVARCHAR(20), SoGio NVARCHAR(2), GhiChu NVARCHAR(250), DaThanhToan INTEGER(2), TongTien INTEGER(2))");
         dataBaseHinhAnh = new DataBaseHinhAnh(this, "hinhanh.sqlite", null, 1);
         dataBaseHinhAnh.queryData("CREATE TABLE IF NOT EXISTS HinhAnh(IdHA INTEGER PRIMARY KEY AUTOINCREMENT, IdSB LONG , Url NVARCHAR(300))");
         dataBaseSanBong.queryData("UPDATE SanBong SET HinhAnh ='" + "http://asiansports.com.vn/wp-content/uploads/2017/07/IMG_20170619_210927-450x600.jpg" + "' WHERE Ten = '" + "Basket" + "'");
@@ -57,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
             insertDataBaseSanBong();
             insertDataBaseHinhAnh();
             insertDataBinhLuan();
+            insertDataBaseSanCon();
             SharedPreferencesManager.setFirstTimeSetup(false);
         } else {
             Toast.makeText(this, "Chào mừng" + SharedPreferencesManager.getTenFB() +
@@ -72,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         imageButtonDangNhap = findViewById(R.id.imageButtonDangNhap);
 
         sanBongArrayList = new ArrayList<>();
+        sanConArrayList = new ArrayList<>();
         Adapter_ListSanBong adapter_listSanBong = new Adapter_ListSanBong(this, R.layout.iterm_list_sanbong, sanBongArrayList);
         listView.setAdapter(adapter_listSanBong);
         // lấy data từ dataBase
@@ -91,10 +86,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    //1 3 6 8 11 13 16 18 21 23
-    //2 7 12 17 22
-    // 4 9 14 19 24
-    // 5 10 15 20 25
     private void insertDataBaseHinhAnh() {
         dataBaseHinhAnh.Insert(1, "https://images.foody.vn/res/g17/164586/prof/s576x330/foody-mobile-hmb-h-jpg-284-635818230095362508.jpg");
         dataBaseHinhAnh.Insert(1, "http://www.sanconhantao.com/wp-content/uploads/2016/09/dich-vu-cung-cap-co-nhan-tao-san-bong-da-chat-luong-cao.jpg");
@@ -708,9 +699,173 @@ public class MainActivity extends AppCompatActivity {
         dataBaseSanBong.Insert("Basket", "93 Võ Văn Ngân, Linh Trung, Thủ Đức", 4, 2.5,
                 "https://i.ytimg.com/vi/3d9d9WRuPFE/maxresdefault.jpg");
     }
-//    private void insertDataDatTruoc() {
-//        dataBaseSanBong.InsertDataDatTruoc("nodoann@gmail.com", 1, "Sân 20 người", "17/01/2019", "14:30","1"," ", 1,120000); }
 
+    private  void insertDataBaseSanCon(){
+
+        //1 3 6 8 11 13 16 18 21 23
+        //2 7 12 17 22
+        // 4 9 14 19 24
+        // 5 10 15 20 25
+        dataBaseSanBong.insertDataSanCon(1, "Sân 10 người", 150000);
+        dataBaseSanBong.insertDataSanCon(1, "Sân 10 người có khán đài (số 1)", 180000);
+        dataBaseSanBong.insertDataSanCon(1, "Sân 10 người có khán đài (số 2)", 180000);
+        dataBaseSanBong.insertDataSanCon(1, "Sân 5 người (số 1)", 120000);
+        dataBaseSanBong.insertDataSanCon(1, "Sân 5 người (số 2)", 120000);
+
+        dataBaseSanBong.insertDataSanCon(3, "Sân 10 người", 150000);
+        dataBaseSanBong.insertDataSanCon(3, "Sân 10 người có khán đài (số 1)", 180000);
+        dataBaseSanBong.insertDataSanCon(3, "Sân 10 người có khán đài (số 2)", 180000);
+        dataBaseSanBong.insertDataSanCon(3, "Sân 5 người (số 1)", 120000);
+        dataBaseSanBong.insertDataSanCon(3, "Sân 5 người (số 2)", 120000);
+
+        dataBaseSanBong.insertDataSanCon(6, "Sân 10 người", 150000);
+        dataBaseSanBong.insertDataSanCon(6, "Sân 10 người có khán đài (số 1)", 180000);
+        dataBaseSanBong.insertDataSanCon(6, "Sân 10 người có khán đài (số 2)", 180000);
+        dataBaseSanBong.insertDataSanCon(6, "Sân 5 người (số 1)", 120000);
+        dataBaseSanBong.insertDataSanCon(6, "Sân 5 người (số 2)", 120000);
+
+        dataBaseSanBong.insertDataSanCon(8, "Sân 10 người", 150000);
+        dataBaseSanBong.insertDataSanCon(8, "Sân 10 người có khán đài (số 1)", 180000);
+        dataBaseSanBong.insertDataSanCon(8, "Sân 10 người có khán đài (số 2)", 180000);
+        dataBaseSanBong.insertDataSanCon(8, "Sân 5 người (số 1)", 120000);
+        dataBaseSanBong.insertDataSanCon(8, "Sân 5 người (số 2)", 120000);
+
+        dataBaseSanBong.insertDataSanCon(11, "Sân 10 người", 150000);
+        dataBaseSanBong.insertDataSanCon(11, "Sân 10 người có khán đài (số 1)", 180000);
+        dataBaseSanBong.insertDataSanCon(11, "Sân 10 người có khán đài (số 2)", 180000);
+        dataBaseSanBong.insertDataSanCon(11, "Sân 5 người (số 1)", 120000);
+        dataBaseSanBong.insertDataSanCon(11, "Sân 5 người (số 2)", 120000);
+
+        dataBaseSanBong.insertDataSanCon(13, "Sân 10 người", 150000);
+        dataBaseSanBong.insertDataSanCon(13, "Sân 10 người có khán đài (số 1)", 180000);
+        dataBaseSanBong.insertDataSanCon(13, "Sân 10 người có khán đài (số 2)", 180000);
+        dataBaseSanBong.insertDataSanCon(13, "Sân 5 người (số 1)", 120000);
+        dataBaseSanBong.insertDataSanCon(13, "Sân 5 người (số 2)", 120000);
+
+        dataBaseSanBong.insertDataSanCon(16, "Sân 10 người", 150000);
+        dataBaseSanBong.insertDataSanCon(16, "Sân 10 người có khán đài (số 1)", 180000);
+        dataBaseSanBong.insertDataSanCon(16, "Sân 10 người có khán đài (số 2)", 180000);
+        dataBaseSanBong.insertDataSanCon(16, "Sân 5 người (số 1)", 120000);
+        dataBaseSanBong.insertDataSanCon(16, "Sân 5 người (số 2)", 120000);
+
+        dataBaseSanBong.insertDataSanCon(18, "Sân 10 người", 150000);
+        dataBaseSanBong.insertDataSanCon(18, "Sân 10 người có khán đài (số 1)", 180000);
+        dataBaseSanBong.insertDataSanCon(18, "Sân 10 người có khán đài (số 2)", 180000);
+        dataBaseSanBong.insertDataSanCon(18, "Sân 5 người (số 1)", 120000);
+        dataBaseSanBong.insertDataSanCon(18, "Sân 5 người (số 2)", 120000);
+
+        dataBaseSanBong.insertDataSanCon(21, "Sân 10 người", 150000);
+        dataBaseSanBong.insertDataSanCon(21, "Sân 10 người có khán đài (số 1)", 180000);
+        dataBaseSanBong.insertDataSanCon(21, "Sân 10 người có khán đài (số 2)", 180000);
+        dataBaseSanBong.insertDataSanCon(21, "Sân 5 người (số 1)", 120000);
+        dataBaseSanBong.insertDataSanCon(21, "Sân 5 người (số 2)", 120000);
+
+        dataBaseSanBong.insertDataSanCon(23, "Sân 10 người", 150000);
+        dataBaseSanBong.insertDataSanCon(23, "Sân 10 người có khán đài (số 1)", 180000);
+        dataBaseSanBong.insertDataSanCon(23, "Sân 10 người có khán đài (số 2)", 180000);
+        dataBaseSanBong.insertDataSanCon(23, "Sân 5 người (số 1)", 120000);
+        dataBaseSanBong.insertDataSanCon(23, "Sân 5 người (số 2)", 120000);
+
+        dataBaseSanBong.insertDataSanCon(4, "Sân có khán đài (số 1)", 150000);
+        dataBaseSanBong.insertDataSanCon(4, "Sân có khán đài (số 2)", 150000);
+        dataBaseSanBong.insertDataSanCon(4, "Sân có khán đài (số 3)", 150000);
+        dataBaseSanBong.insertDataSanCon(4, "Sân không khán đài (số 1)", 120000);
+        dataBaseSanBong.insertDataSanCon(4, "Sân không khán đài (số 2)", 120000);
+
+        dataBaseSanBong.insertDataSanCon(9, "Sân có khán đài (số 1)", 150000);
+        dataBaseSanBong.insertDataSanCon(9, "Sân có khán đài (số 2)", 150000);
+        dataBaseSanBong.insertDataSanCon(9, "Sân có khán đài (số 3)", 150000);
+        dataBaseSanBong.insertDataSanCon(9, "Sân không khán đài (số 1)", 120000);
+        dataBaseSanBong.insertDataSanCon(9, "Sân không khán đài (số 2)", 120000);
+
+        dataBaseSanBong.insertDataSanCon(14, "Sân có khán đài (số 1)", 150000);
+        dataBaseSanBong.insertDataSanCon(14, "Sân có khán đài (số 2)", 150000);
+        dataBaseSanBong.insertDataSanCon(14, "Sân có khán đài (số 3)", 150000);
+        dataBaseSanBong.insertDataSanCon(14, "Sân không khán đài (số 1)", 120000);
+        dataBaseSanBong.insertDataSanCon(14, "Sân không khán đài (số 2)", 120000);
+
+        dataBaseSanBong.insertDataSanCon(19, "Sân có khán đài (số 1)", 150000);
+        dataBaseSanBong.insertDataSanCon(19, "Sân có khán đài (số 2)", 150000);
+        dataBaseSanBong.insertDataSanCon(19, "Sân có khán đài (số 3)", 150000);
+        dataBaseSanBong.insertDataSanCon(19, "Sân không khán đài (số 1)", 120000);
+        dataBaseSanBong.insertDataSanCon(19, "Sân không khán đài (số 2)", 120000);
+
+        dataBaseSanBong.insertDataSanCon(24, "Sân có khán đài (số 1)", 150000);
+        dataBaseSanBong.insertDataSanCon(24, "Sân có khán đài (số 2)", 150000);
+        dataBaseSanBong.insertDataSanCon(24, "Sân có khán đài (số 3)", 150000);
+        dataBaseSanBong.insertDataSanCon(24, "Sân không khán đài (số 1)", 120000);
+        dataBaseSanBong.insertDataSanCon(24, "Sân không khán đài (số 2)", 120000);
+
+        dataBaseSanBong.insertDataSanCon(2, "Sân có khán đài (số 1)", 150000);
+        dataBaseSanBong.insertDataSanCon(2, "Sân có khán đài (số 2)", 150000);
+        dataBaseSanBong.insertDataSanCon(2, "Sân có khán đài (số 3)", 150000);
+        dataBaseSanBong.insertDataSanCon(2, "Sân không khán đài (số 1)", 120000);
+        dataBaseSanBong.insertDataSanCon(2, "Sân không khán đài (số 2)", 120000);
+
+        dataBaseSanBong.insertDataSanCon(7, "Sân có khán đài (số 1)", 150000);
+        dataBaseSanBong.insertDataSanCon(7, "Sân có khán đài (số 2)", 150000);
+        dataBaseSanBong.insertDataSanCon(7, "Sân có khán đài (số 3)", 150000);
+        dataBaseSanBong.insertDataSanCon(7, "Sân không khán đài (số 1)", 120000);
+        dataBaseSanBong.insertDataSanCon(7, "Sân không khán đài (số 2)", 120000);
+
+        dataBaseSanBong.insertDataSanCon(12, "Sân có khán đài (số 1)", 150000);
+        dataBaseSanBong.insertDataSanCon(12, "Sân có khán đài (số 2)", 150000);
+        dataBaseSanBong.insertDataSanCon(12, "Sân có khán đài (số 3)", 150000);
+        dataBaseSanBong.insertDataSanCon(12, "Sân không khán đài (số 1)", 120000);
+        dataBaseSanBong.insertDataSanCon(12, "Sân không khán đài (số 2)", 120000);
+
+        dataBaseSanBong.insertDataSanCon(17, "Sân có khán đài (số 1)", 150000);
+        dataBaseSanBong.insertDataSanCon(17, "Sân có khán đài (số 2)", 150000);
+        dataBaseSanBong.insertDataSanCon(17, "Sân có khán đài (số 3)", 150000);
+        dataBaseSanBong.insertDataSanCon(17, "Sân không khán đài (số 1)", 120000);
+        dataBaseSanBong.insertDataSanCon(17, "Sân không khán đài (số 2)", 120000);
+
+        dataBaseSanBong.insertDataSanCon(22, "Sân có khán đài (số 1)", 150000);
+        dataBaseSanBong.insertDataSanCon(22, "Sân có khán đài (số 2)", 150000);
+        dataBaseSanBong.insertDataSanCon(22, "Sân có khán đài (số 3)", 150000);
+        dataBaseSanBong.insertDataSanCon(22, "Sân không khán đài (số 1)", 120000);
+        dataBaseSanBong.insertDataSanCon(22, "Sân không khán đài (số 2)", 120000);
+
+        dataBaseSanBong.insertDataSanCon(5, "Sân 1 rổ (số 1)", 120000);
+        dataBaseSanBong.insertDataSanCon(5, "Sân 1 rổ (số 2)", 120000);
+        dataBaseSanBong.insertDataSanCon(5, "Sân 1 rổ (số 3)", 120000);
+        dataBaseSanBong.insertDataSanCon(5, "Sân 2 rổ (số 1)", 150000);
+        dataBaseSanBong.insertDataSanCon(5, "Sân 2 rổ(số 2)", 150000);
+        dataBaseSanBong.insertDataSanCon(5, "Sân 2 rổ có khán đài (số 1)", 180000);
+        dataBaseSanBong.insertDataSanCon(5, "Sân 2 rổ có khán đài (số 2)", 180000);
+
+        dataBaseSanBong.insertDataSanCon(10, "Sân 1 rổ (số 1)", 120000);
+        dataBaseSanBong.insertDataSanCon(10, "Sân 1 rổ (số 2)", 120000);
+        dataBaseSanBong.insertDataSanCon(10, "Sân 1 rổ (số 3)", 120000);
+        dataBaseSanBong.insertDataSanCon(10, "Sân 2 rổ (số 1)", 150000);
+        dataBaseSanBong.insertDataSanCon(10, "Sân 2 rổ(số 2)", 150000);
+        dataBaseSanBong.insertDataSanCon(10, "Sân 2 rổ có khán đài (số 1)", 180000);
+        dataBaseSanBong.insertDataSanCon(10, "Sân 2 rổ có khán đài (số 2)", 180000);
+
+        dataBaseSanBong.insertDataSanCon(15, "Sân 1 rổ (số 1)", 120000);
+        dataBaseSanBong.insertDataSanCon(15, "Sân 1 rổ (số 2)", 120000);
+        dataBaseSanBong.insertDataSanCon(15, "Sân 1 rổ (số 3)", 120000);
+        dataBaseSanBong.insertDataSanCon(15, "Sân 2 rổ (số 1)", 150000);
+        dataBaseSanBong.insertDataSanCon(15, "Sân 2 rổ(số 2)", 150000);
+        dataBaseSanBong.insertDataSanCon(15, "Sân 2 rổ có khán đài (số 1)", 180000);
+        dataBaseSanBong.insertDataSanCon(15, "Sân 2 rổ có khán đài (số 2)", 180000);
+
+        dataBaseSanBong.insertDataSanCon(20, "Sân 1 rổ (số 1)", 120000);
+        dataBaseSanBong.insertDataSanCon(20, "Sân 1 rổ (số 2)", 120000);
+        dataBaseSanBong.insertDataSanCon(20, "Sân 1 rổ (số 3)", 120000);
+        dataBaseSanBong.insertDataSanCon(20, "Sân 2 rổ (số 1)", 150000);
+        dataBaseSanBong.insertDataSanCon(20, "Sân 2 rổ(số 2)", 150000);
+        dataBaseSanBong.insertDataSanCon(20, "Sân 2 rổ có khán đài (số 1)", 180000);
+        dataBaseSanBong.insertDataSanCon(20, "Sân 2 rổ có khán đài (số 2)", 180000);
+
+        dataBaseSanBong.insertDataSanCon(25, "Sân 1 rổ (số 1)", 120000);
+        dataBaseSanBong.insertDataSanCon(25, "Sân 1 rổ (số 2)", 120000);
+        dataBaseSanBong.insertDataSanCon(25, "Sân 1 rổ (số 3)", 120000);
+        dataBaseSanBong.insertDataSanCon(25, "Sân 2 rổ (số 1)", 150000);
+        dataBaseSanBong.insertDataSanCon(25, "Sân 2 rổ(số 2)", 150000);
+        dataBaseSanBong.insertDataSanCon(25, "Sân 2 rổ có khán đài (số 1)", 180000);
+        dataBaseSanBong.insertDataSanCon(25, "Sân 2 rổ có khán đài (số 2)", 180000);
+    }
 
     private void control() {
 
@@ -760,5 +915,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public static void insertDatTruoc(String email, int idSB, String chonSan, String ngayChon, String gioChon, String soGio, String ghiChu, int daThanhToan, int tongTien) {
+        dataBaseSanBong.InsertDataDatTruoc(email, idSB, chonSan, ngayChon, gioChon, soGio, ghiChu, daThanhToan, tongTien);
+    }
+
+    public static void InsertCMT(int idSB, String s, int i) {
+        dataBaseSanBong.InsertBinhLuan(idSB, s, "https://cdn.iconscout.com/icon/free/png-256/avatar-372-456324.png", SharedPreferencesManager.getTenFB(), i);
     }
 }
